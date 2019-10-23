@@ -17,7 +17,6 @@ class App extends Component {
 
   componentDidMount = async () => {
     const movies = await fetchPopularMovies();
-    console.log(movies);
     this.setState({ movies });
     this.props.addMovies(movies);
   }
