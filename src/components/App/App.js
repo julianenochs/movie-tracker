@@ -8,16 +8,9 @@ import { addMovies } from '../../actions/index';
 import { connect } from 'react-redux';
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      movies: [],
-    }
-  }
 
   componentDidMount = async () => {
     const movies = await fetchPopularMovies();
-    this.setState({ movies });
     this.props.addMovies(movies);
   }
 
