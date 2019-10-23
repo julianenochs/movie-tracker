@@ -1,0 +1,10 @@
+$container-color: #3C7A89;
+
+.movie__container {
+  background-color: $container-color;
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  overflow: scroll;
+  width: 85%;
+}

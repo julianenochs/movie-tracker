@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { fetchPopularMovies } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
 import MoviesContainer from '../../containers/MoviesContainer';
 import { Route } from 'react-router-dom';
 import { addMovies } from '../../actions/index';
 import { connect } from 'react-redux';
+import Header from '../../Header/header';
 
 class App extends Component {
 
@@ -21,7 +22,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='app'>
+        <Header />
         <Route exact path="/" component={MoviesContainer} />
         <Route exact path="/login" component={LoginForm} />
       </div>

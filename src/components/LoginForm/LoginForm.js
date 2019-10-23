@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from '../../actions/index';
 import { register } from '../../actions/index';
-import { NavLink, Redirect, Link } from 'react-router-dom'
+import { NavLink, Redirect, Link } from 'react-router-dom';
+import './LoginForm.scss'
 
 class LoginForm extends Component {
     constructor() {
@@ -35,12 +36,9 @@ class LoginForm extends Component {
         this.props.register(this.state.name, this.state.email, this.state.password);
     }
 
-    render() {
-        // if(this.state.loggedIn === true) {
-        //    return <Redirect exact to='/' />
-        // }      
+    render() {    
         return(
-            <section>
+            <section className='form'>
                 <form>
                     <input 
                         name='name'

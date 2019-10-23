@@ -4,7 +4,7 @@ import './MovieCard.scss';
 const MovieCard = ({ title, poster, overview }) => {
 
   return (
-    <section>
+    <section className='movie__card'>
       <h1>{title}</h1>
       <img src={`https://image.tmdb.org/t/p/original/${poster}`} alt='movie poster' />
       <p>
