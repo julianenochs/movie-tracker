@@ -17,26 +17,13 @@ class App extends Component {
       console.log(error);
     }
     
-    // fetch('http://localhost:3001/api/v1/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     email: 'alan2@turing.io',
-    //     password: 'password'
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(data => console.log(data))
-    //   .catch( error => console.log(error.error.detail))
   };
 
   render() {
     return (
       <div>
-      <Route exact path="/" render={() => <MoviesContainer />} />
-      <Route exact path="/login" component={LoginForm} />
+        <Route exact path="/" component={MoviesContainer} />
+        <Route exact path="/login" component={LoginForm} />
       </div>
     );
   }
@@ -45,5 +32,9 @@ class App extends Component {
 const mapDispatchToProps = dispatch => ({
   addMovies : movies => dispatch( addMovies(movies) )
 });
+
+const mapStateToProps = state => ({
+  user: state.user
+})
 
 export default connect(null, mapDispatchToProps)(App);
