@@ -10,9 +10,27 @@ import { connect } from 'react-redux';
 class App extends Component {
 
   componentDidMount = async () => {
-    const movies = await fetchPopularMovies();
-    this.props.addMovies(movies);
-  }
+    try {
+      const movies = await fetchPopularMovies();
+      this.props.addMovies(movies);
+    } catch(error) {
+      console.log(error);
+    }
+    
+    // fetch('http://localhost:3001/api/v1/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     email: 'alan2@turing.io',
+    //     password: 'password'
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(data => console.log(data))
+    //   .catch( error => console.log(error.error.detail))
+  };
 
   render() {
     return (

@@ -8,3 +8,9 @@ export const addMovies = movies => ({
   type: 'ADD_MOVIES',
   movies,
 });
+
+export const login = (email, password) => ({
+  type: 'LOGIN',
+  email,
+  password,
+})
