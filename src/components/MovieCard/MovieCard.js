@@ -1,4 +1,5 @@
 import React from 'react';
+import './MovieCard.scss';
 
 const MovieCard = ({ title, poster, overview }) => {
 
