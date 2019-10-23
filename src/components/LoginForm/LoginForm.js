@@ -23,10 +23,12 @@ class LoginForm extends Component {
             <section>
                 <form onSubmit={this.handleSubmit}>
                     <input
+                        name='email'
                         value={this.state.email}
                         placeholder='Your email here'
                         onChange={this.handleChange} />
                     <input 
+                        name='password'
                         value={this.state.password}
                         placeholder='Password'
                         onChange={this.handleChange} />

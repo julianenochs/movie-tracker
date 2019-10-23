@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { fetchPopularMovies } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
-
+import { Router, Route } from 'react-router-dom';
 class App extends Component {
   constructor() {
     super();
@@ -17,11 +17,15 @@ class App extends Component {
     this.setState({ movies });
   }
 
-  render() {
+  render = () => {
     return (
       <div>
       <h1>Hello</h1>
-      <LoginForm />
+      <Router>
+        <Route exact path='/'
+              render={ (props) => <LoginForm {...props}/>}>
+        </Route>
+      </Router>
       </div>
     );
   }
