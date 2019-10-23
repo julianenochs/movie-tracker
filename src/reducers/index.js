@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { Login } from './Login';
+import { Logins } from './Logins';
 
 export const rootReducer = combineReducers({
-    Login
+    Logins
 });
