@@ -29,6 +29,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(null, mapDispatchToProps)(App);
-
-//  https://image.tmdb.org/t/p/original/${poster_path}
-// use this link in src of image to display poster for movie
