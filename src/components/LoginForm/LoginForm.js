@@ -11,7 +11,7 @@ class LoginForm extends Component {
     }
 
     handleSubmit = () => {
-
+        this.setState({ email: '', password: ''})
     }
 
     handleChange = (e) => {
