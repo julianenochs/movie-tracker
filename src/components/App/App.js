@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { fetchPopularMovies } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
+import MoviesContainer from '../../containers/MoviesContainer';
 import { Route } from 'react-router-dom';
 import { addMovies } from '../../actions/index';
 import { connect } from 'react-redux';
@@ -19,13 +20,12 @@ class App extends Component {
     console.log(movies);
     this.setState({ movies });
     this.props.addMovies(movies);
-    console.log(this.props);
   }
 
   render() {
     return (
       <div>
-      <Route exact path="/" render={() => <h1>Hi</h1>} />
+      <Route exact path="/" render={() => <MoviesContainer />} />
       <Route exact path="/login" component={LoginForm} />
       </div>
     );
