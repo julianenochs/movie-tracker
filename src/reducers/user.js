@@ -22,6 +22,9 @@ export const user = (state = {}, action) => {
 
       return { email: action.email, loggedIn: true, error: '' };
 
+    case 'RESET_USER':
+      return { email: '', loggedIn: false, error: '' };
+
     case 'REGISTER':
       fetch('http://localhost:3001/api/v1/users', {
         method: 'POST',
