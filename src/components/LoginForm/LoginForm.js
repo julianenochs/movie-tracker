@@ -31,6 +31,7 @@ class LoginForm extends Component {
     const { email, password } = this.props.tempUser;
     this.props.login(email, password);
     this.props.updateUserInfo('', '', '');
+    this.props.updateIsLoggedIn(true);
   };
 
   render() {
@@ -60,7 +61,6 @@ class LoginForm extends Component {
     );
   }
 }
-
 
 export const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
