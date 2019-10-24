@@ -1,0 +1,13 @@
+$background-color: rgba(0, 30, 45, 1);
+
+.app {
+  align-items: center;
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
