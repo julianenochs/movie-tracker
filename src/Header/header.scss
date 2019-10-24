@@ -1,4 +1,8 @@
 $header-color: #B27A27;
+$shadow-color-one: #6D4B18;
+$shadow-color-two: #4C3410;
+$button-color: #004263;
+$button-shadow: #003149;
 
 .header {
   align-items: center;
@@ -6,22 +10,23 @@ $header-color: #B27A27;
   display: flex;
   font-family: 'Fascinate Inline', cursive;
   font-size: 2em;
+  height: 10vh;
   justify-content: space-between;
   letter-spacing: 7px;
-  text-shadow: 0 1px 0px #6D4B18,
-    1px 0 0px #4C3410,
-    1px 2px 1px #6D4B18,
-    2px 1px 1px #4C3410,
-    2px 3px 2px #6D4B18,
-    3px 2px 2px #4C3410,
-    3px 4px 2px #6D4B18;
+  text-shadow: 0 1px 0px $shadow-color-one,
+    1px 0 0px $shadow-color-two,
+    1px 2px 1px $shadow-color-one,
+    2px 1px 1px $shadow-color-two,
+    2px 3px 2px $shadow-color-one,
+    3px 2px 2px $shadow-color-two,
+    3px 4px 2px $shadow-color-one;
   width: 85%;
 }
 
 .user__button {
-  background-color: #004263;
+  background-color: $button-color;
   border: none;
-  box-shadow: 4px 4px #003149;
+  box-shadow: 4px 4px $button-shadow;
   color: white;
   font-family: 'Barlow Condensed', sans-serif;
   font-size: .7em;
