@@ -1,4 +1,4 @@
-const addUser = ({ email, password }) => ({
+export const addUser = ({ email, password }) => ({
     type: 'ADD_USER',
     email,
     password
@@ -20,4 +20,11 @@ export const register = (name, email, password) => ({
   name,
   email,
   password
+});
+
+export const updateUserInfo = (name, email, password) => ({
+  type: 'UPDATE_USER_INFO',
+  name,
+  email,
+  password,
 });
