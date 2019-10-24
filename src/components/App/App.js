@@ -10,23 +10,21 @@ import { connect } from 'react-redux';
 import Header from '../../Header/header';
 
 class App extends Component {
-
   componentDidMount = async () => {
     try {
       const movies = await fetchPopularMovies();
       this.props.addMovies(movies);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
     }
-    
   };
 
   render() {
     return (
       <div className='app'>
         <Header />
-        <Route exact path="/" component={MoviesContainer} />
-        <Route exact path="/login" component={LoginForm} />
+        <Route exact path='/' component={MoviesContainer} />
+        <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
       </div>
     );
@@ -34,11 +32,14 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addMovies : movies => dispatch( addMovies(movies) )
+  addMovies: movies => dispatch(addMovies(movies))
 });
 
 const mapStateToProps = state => ({
   user: state.user
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
