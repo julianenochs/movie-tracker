@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { login } from '../../actions/index';
+import { register } from '../../actions/index';
+import { NavLink, Redirect, Link } from 'react-router-dom';
+import './LoginForm.scss'
 
 class LoginForm extends Component {
     constructor() {
         super();
         this.state = { 
             email: '',
-            password: '' 
+            password: '',
+            name: '',
+            loggedIn: false
         }
     }
 
@@ -18,10 +24,27 @@ class LoginForm extends Component {
         this.setState({ [e.target.name] : e.target.value })
     }
 
-    render() {
+    handleLogin = (e) => {
+        e.preventDefault();
+        this.setState({ loggedIn: true });
+        console.log(this.state);
+        this.props.login(this.state.email, this.state.password);
+    }
+
+    handleRegister = e => {
+        e.preventDefault();
+        this.props.register(this.state.name, this.state.email, this.state.password);
+    }
+
+    render() {    
         return(
-            <section>
-                <form onSubmit={this.handleSubmit}>
+            <section className='form'>
+                <form>
+                    <input 
+                        name='name'
+                        value={this.state.name}
+                        placeholder='Enter Name'
+                        onChange={this.handleChange} />
                     <input
                         name='email'
                         value={this.state.email}
@@ -32,11 +55,23 @@ class LoginForm extends Component {
                         value={this.state.password}
                         placeholder='Password'
                         onChange={this.handleChange} />
-                        <button>Login</button>
+                        <Link to='/'>
+                            <button onClick={ e => this.handleLogin(e) } >Login</button>
+                        </Link>
+                        <button onClick={ e => this.handleRegister(e)} > Register </button>
                 </form>
             </section>
         )
     }
 }
 
-export default LoginForm;
+const mapDispatchToProps = dispatch => ({
+    login: (email, password) => dispatch( login(email, password) ),
+    register: (name, email, password) => dispatch( register(name, email, password) ),
+});
+
+const mapStateToProps = state => ({
+    user: state.user,
+});
+
+export default connect(null, mapDispatchToProps)(LoginForm);

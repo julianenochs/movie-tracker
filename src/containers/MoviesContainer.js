@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../components/MovieCard/MovieCard';
+import './MovieContainers.scss';
 
 const MoviesContainer = (props) => {
   const movies = props.movies.map((movie, i) => {
@@ -12,7 +13,7 @@ const MoviesContainer = (props) => {
     />;
   });
   return (
-    <section>
+    <section className='movie__container'>
       {movies}
     </section>
   );
