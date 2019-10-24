@@ -4,7 +4,28 @@ $header-color: #B27A27;
   align-items: center;
   color: $header-color;
   display: flex;
+  font-family: 'Fascinate Inline', cursive;
   font-size: 2em;
   justify-content: space-between;
+  letter-spacing: 7px;
+  text-shadow: 0 1px 0px #6D4B18,
+    1px 0 0px #4C3410,
+    1px 2px 1px #6D4B18,
+    2px 1px 1px #4C3410,
+    2px 3px 2px #6D4B18,
+    3px 2px 2px #4C3410,
+    3px 4px 2px #6D4B18;
   width: 85%;
+}
+
+.user__button {
+  background-color: #004263;
+  border: none;
+  box-shadow: 4px 4px #003149;
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: .7em;
+  height: 40px;
+  letter-spacing: 5px;
+  width: 120px;
 }

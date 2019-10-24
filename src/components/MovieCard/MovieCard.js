@@ -5,14 +5,14 @@ const MovieCard = ({ title, poster, overview }) => {
 
   return (
     <section className='movie__card'>
-      <h1>{title}</h1>
+      <h1 className='movie__title'>{title}</h1>
       <img src={`https://image.tmdb.org/t/p/original/${poster}`} alt='movie poster' />
       <p className='overview'>
         {overview}
       </p>
-      <img src='https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX17743925.jpg' 
+      {/* <img src='https://www.pinclipart.com/picdir/middle/33-337369_heart-shaped-clipart-instagram-heart-sign-icon-transparent.png' 
           className='favorite__logo favorited'
-      />
+      /> */}
     </section>
   );
 };

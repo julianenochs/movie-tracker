@@ -4,7 +4,6 @@ img {
 
 .movie__card {
   background-color: rgba(0, 31, 46, 0.78);
-  border: 2px solid black;
   color: white;
   display: flex;
   flex-direction: column;
@@ -13,12 +12,18 @@ img {
   padding: 15px;
 }
 
+.movie__title {
+  font-family: 'Staatliches', cursive;
+  font-size: 1.7em;
+  height: 8vh;
+  letter-spacing: 3px;
+}
+
 .overview {
   height: 20vh;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: pre-wrap;
-  width: 95;
+  font-family: 'Barlow Condensed', sans-serif;
+  overflow: scroll;
+  width: 95%;
 }
 
 .favorite__logo {

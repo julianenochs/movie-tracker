@@ -5,7 +5,7 @@ const Header = () => {
   return(
     <header className='header'>
       <h1>NEWFLIX</h1>
-      <button>Sign In</button>
+      <button className='user__button'>Sign In</button>
     </header>
   )
 }
