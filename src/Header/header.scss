@@ -1,0 +1,10 @@
+$header-color: #B27A27;
+
+.header {
+  align-items: center;
+  color: $header-color;
+  display: flex;
+  font-size: 2em;
+  justify-content: space-between;
+  width: 85%;
+}
