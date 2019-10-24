@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/index';
+import { register } from '../../actions/index';
 import { updateUserInfo } from '../../actions/index';
-import { Link } from 'react-router-dom';
-import './LoginForm.scss'
+import { Link } from 'react-router-dom'
+import './RegisterForm.scss';
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
 
   handleChange = (e) => {
     const { updateUserInfo, tempUser } = this.props;
     const inputName = e.target.name;
 
     switch(inputName) {
+      case 'name':
+        updateUserInfo(e.target.value, tempUser.email, tempUser.password);
+        break;
       case 'email':
         updateUserInfo(tempUser.name, e.target.value, tempUser.password);
         break;
@@ -24,17 +27,22 @@ class LoginForm extends Component {
     }
   }
 
-  handleLogin = (e) => {
-    const { email, password } = this.props.tempUser;
-    this.setState({ loggedIn: true });
-    this.props.login(email, password);
+  handleRegister = e => {
+    const { name, email, password } = this.props.tempUser;
+    this.props.register(name, email, password);
     this.props.updateUserInfo('','','');
   }
 
-  render() {    
-    return(
-      <section className='form'>
-        <form>
+  render() {
+    return (
+        <form className='form'>
+          <input
+            name='name'
+            type='text'
+            value={this.props.tempUser.name}
+            placeholder='Enter Name'
+            onChange={this.handleChange}
+          />
           <input
             name='email'
             type='text'
@@ -50,24 +58,20 @@ class LoginForm extends Component {
             onChange={this.handleChange} 
           />
           <Link to='/'>
-            <button onClick={this.handleLogin} >
-              Login
-            </button>
+            <button onClick={this.handleRegister} >Register</button>
           </Link>
         </form>
-      </section>
     );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch( login(email, password) ),
   updateUserInfo: (name, email, password) => dispatch( updateUserInfo(name, email, password) ),
+  register: (name, email, password) => dispatch( register(name, email, password) ),
 });
 
 const mapStateToProps = state => ({
-  user: state.user,
   tempUser: state.tempUser,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterForm);
