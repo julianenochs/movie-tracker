@@ -61,7 +61,8 @@ class LoginForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+
+export const mapDispatchToProps = dispatch => ({
   login: (email, password) => dispatch(login(email, password)),
   updateUserInfo: (name, email, password) =>
     dispatch(updateUserInfo(name, email, password)),
@@ -69,7 +70,7 @@ const mapDispatchToProps = dispatch => ({
   updateError: errorMessage => dispatch(updateError(errorMessage))
 });
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   user: state.user,
   tempUser: state.tempUser,
   isLoggedIn: state.isLoggedIn,
