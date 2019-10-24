@@ -22,6 +22,7 @@ const Header = props => {
           Sign Out
         </button>
       </NavLink>
+      {props.user.email !== '' && <h3>{props.user.email}</h3>}
     </header>
   );
 };
@@ -30,7 +31,11 @@ const mapDispatchToProps = dispatch => ({
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean))
 });
 
+const mapStateToProps = state => ({
+  user: state.user
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Header);
