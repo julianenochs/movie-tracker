@@ -9,10 +9,11 @@ export const addMovies = movies => ({
   movies
 });
 
-export const login = (email, password) => ({
+export const login = (email, password, error) => ({
   type: 'LOGIN',
   email,
-  password
+  password,
+  error
 });
 
 export const register = (name, email, password) => ({

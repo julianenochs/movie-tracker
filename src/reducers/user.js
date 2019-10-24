@@ -14,12 +14,13 @@ export const user = (state = {}, action) => {
         .then(response => response.json())
         .then(data => {
           if (data.error) {
-            console.log(data.error);
+            console.log('Login Again Please', data.error);
+
+            return { email: action.email, loggedIn: false, error: 'ERROR' };
           }
-          console.log(data);
         });
 
-      return { email: action.email, loggedIn: true };
+      return { email: action.email, loggedIn: true, error: data.error };
 
     case 'REGISTER':
       fetch('http://localhost:3001/api/v1/users', {
@@ -37,7 +38,7 @@ export const user = (state = {}, action) => {
         .then(data => console.log(data))
         .catch(error => console.log(error.error.detail));
 
-      return { email: action.email, loggedIn: true };
+      return { email: action.email, loggedIn: true, error: '' };
 
     default:
       return state;
