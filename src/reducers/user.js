@@ -20,7 +20,7 @@ export const user = (state = {}, action) => {
           }
         });
 
-      return { email: action.email, loggedIn: true, error: data.error };
+      return { email: action.email, loggedIn: true, error: '' };
 
     case 'REGISTER':
       fetch('http://localhost:3001/api/v1/users', {
