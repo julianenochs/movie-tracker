@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { login } from '../../actions/index';
 import { register } from '../../actions/index';
 import { updateUserInfo } from '../../actions/index';
-// import { NavLink, Redirect, Link } from 'react-router-dom'
+// import { NavLink, Redirect, Link } from 'react-router-dom';
 
 class LoginForm extends Component {
 
@@ -32,39 +32,45 @@ class LoginForm extends Component {
 
     handleLogin = (e) => {
         e.preventDefault();
+        const { email, password } = this.props.tempUser;
         this.setState({ loggedIn: true });
-        this.props.login(this.state.email, this.state.password);
+        this.props.login(email, password);
+        this.props.updateUserInfo('','','');
     }
 
     handleRegister = e => {
         e.preventDefault();
-        this.props.register(this.state.name, this.state.email, this.state.password);
+        const { name, email, password } = this.props.tempUser;
+        this.props.register(name, email, password);
+        this.props.updateUserInfo('','','');
     }
 
     render() {
         // if(this.state.loggedIn === true) {
         //    return <Redirect exact to='/' />
         // } 
-        console.log(this.props);
         return(
             <form>
                 <input 
                     name='name'
                     value={this.props.tempUser.name}
                     placeholder='Enter Name'
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type='text' />
                 <input
                     name='email'
                     value={this.props.tempUser.email}
                     placeholder='Your email here'
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type='text' />
                 <input 
                     name='password'
                     value={this.props.tempUser.password}
                     placeholder='Password'
-                    onChange={this.handleChange} />
+                    onChange={this.handleChange}
+                    type='password' />
                     <button onClick={ e => this.handleLogin(e) } >Login</button>
-                    <button onClick={ e => this.handleRegister(e)} > Register </button>
+                    <button onClick={ e => this.handleRegister(e)}> Register </button>
             </form>
         )
     }
