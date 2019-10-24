@@ -39,3 +39,10 @@ export const updateError = errorMessage => ({
   type: 'UPDATE_ERROR',
   errorMessage
 });
+
+export const resetUser = (email, loggedIn, error) => ({
+  type: 'RESET_USER',
+  email,
+  loggedIn,
+  error
+});
