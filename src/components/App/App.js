@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.scss';
 import { fetchPopularMovies } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
-import MoviesContainer from '../../containers/MoviesContainer';
+import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
+import RegisterForm from '../../containers/RegisterForm/RegisterForm';
 import { Route } from 'react-router-dom';
 import { addMovies } from '../../actions/index';
 import { connect } from 'react-redux';
@@ -26,6 +27,7 @@ class App extends Component {
         <Header />
         <Route exact path="/" component={MoviesContainer} />
         <Route exact path="/login" component={LoginForm} />
+        <Route exact path='/register' component={RegisterForm} />
       </div>
     );
   }
