@@ -4,7 +4,9 @@ import { login } from '../../apiCalls';
 import {
   updateUserInfo,
   updateIsLoggedIn,
-  updateError
+  updateError,
+  updateUser,
+  resetError,
 } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
@@ -30,16 +32,17 @@ class LoginForm extends Component {
   handleLogin = e => {
     e.preventDefault();
     const { email, password } = this.props.tempUser;
-    const loginResponse = login( email, password )
+    login( email, password )
     .then( login => {
-      this.props.updateUserInfo('', '', '');
+      console.log('hey', this.props.tempUser);
+      this.props.updateUser(this.props.tempUser.email);
       this.props.updateIsLoggedIn(true);
-      this.props.updateError('');
+      this.props.resetError('');
     })
     .catch( err => {
       this.props.updateError(err);
-      
     })
+    this.props.updateUserInfo('', '', '');
   };
 
   handleRedirect = () => {
@@ -81,7 +84,9 @@ export const mapDispatchToProps = dispatch => ({
   updateUserInfo: (name, email, password) =>
     dispatch(updateUserInfo(name, email, password)),
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
-  updateError: errorMessage => dispatch(updateError(errorMessage))
+  updateError: errorMessage => dispatch(updateError(errorMessage)),
+  updateUser: email => dispatch( updateUser(email) ),
+  resetError: () => dispatch( resetError() ),
 });
 
 export const mapStateToProps = state => ({

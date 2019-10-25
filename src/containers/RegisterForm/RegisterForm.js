@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { register } from '../../actions/index';
-import { updateUserInfo } from '../../actions/index';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { 
+  updateUserInfo, 
+  updateUser, 
+  updateError, 
+  updateIsLoggedIn, 
+  resetError } from '../../actions/index';
+import { register } from '../../apiCalls';
 import './RegisterForm.scss';
 
 class RegisterForm extends Component {
@@ -27,14 +32,32 @@ class RegisterForm extends Component {
   };
 
   handleRegister = e => {
+    e.preventDefault();
     const { name, email, password } = this.props.tempUser;
-    this.props.register(name, email, password);
+    console.log('hey', name, email, password);
+    register(name, email, password)
+    .then(register => {
+      this.props.updateIsLoggedIn(true);
+      this.props.updateUser(email);
+      this.props.resetError();
+    })
+    .catch(error => {
+      this.props.updateError(error);
+    })
     this.props.updateUserInfo('', '', '');
   };
+
+  handleRedirect = () => {
+    if(this.props.isLoggedIn) {
+      return <Redirect to='/' />
+    }
+  }
 
   render() {
     return (
       <form className='form'>
+        {this.props.error !== '' && <h4>{this.props.error}</h4>}
+        {this.props.isLoggedIn && this.handleRedirect()}
         <input
           name='name'
           type='text'
@@ -56,9 +79,7 @@ class RegisterForm extends Component {
           placeholder='Password'
           onChange={this.handleChange}
         />
-        <Link to='/'>
           <button onClick={this.handleRegister}>Register</button>
-        </Link>
       </form>
     );
   }
@@ -67,11 +88,16 @@ class RegisterForm extends Component {
 const mapDispatchToProps = dispatch => ({
   updateUserInfo: (name, email, password) =>
     dispatch(updateUserInfo(name, email, password)),
-  register: (name, email, password) => dispatch(register(name, email, password))
+  updateUser: email => dispatch( updateUser(email) ),
+  updateIsLoggedIn: bool => dispatch( updateIsLoggedIn(bool) ),
+  updateError: error => dispatch( updateError(error) ),
+  resetError: () => dispatch( resetError() ),
 });
 
 const mapStateToProps = state => ({
-  tempUser: state.tempUser
+  tempUser: state.tempUser,
+  error: state.error,
+  isLoggedIn: state.isLoggedIn,
 });
 
 export default connect(
