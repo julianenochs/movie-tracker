@@ -34,15 +34,14 @@ class LoginForm extends Component {
     const { email, password } = this.props.tempUser;
     login( email, password )
     .then( login => {
-      console.log('hey', this.props.tempUser);
       this.props.updateUser(this.props.tempUser.email);
       this.props.updateIsLoggedIn(true);
       this.props.resetError('');
+      this.props.updateUserInfo('', '', '');
     })
     .catch( err => {
       this.props.updateError(err);
     })
-    this.props.updateUserInfo('', '', '');
   };
 
   handleRedirect = () => {

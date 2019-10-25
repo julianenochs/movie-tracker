@@ -33,7 +33,7 @@ class Header extends Component {
 
 const mapDispatchToProps = dispatch => ({
   updateIsLoggedIn: boolean => dispatch( updateIsLoggedIn(boolean) ),
-  updateUser: (email, loggedIn, error) =>
+  updateUser: email =>
     dispatch( updateUser(email) )
 });
 
