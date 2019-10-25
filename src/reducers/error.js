@@ -1,8 +1,8 @@
 export const error = (state = '', action) => {
   switch (action.type) {
     case 'UPDATE_ERROR':
-      return action.errorMessage;
+      return action.errorMessage.message;
     default:
-      return state;
+      return '';
   }
 };

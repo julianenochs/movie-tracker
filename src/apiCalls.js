@@ -3,3 +3,23 @@ export const fetchPopularMovies = async () => {
   const popularMovies = await response.json();
   return popularMovies.results;
 }
+
+export const login = async (email, password) => {
+  const response = await fetch('http://localhost:3001/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      })
+  if(!response.ok) {
+    throw Error('Invalid username or password');
+  }
+  const data = await response.json();
+  console.log(data);
+  
+  return data;
+}

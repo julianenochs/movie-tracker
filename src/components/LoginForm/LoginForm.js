@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../actions/index';
+import { login } from '../../apiCalls';
 import {
   updateUserInfo,
   updateIsLoggedIn,
   updateError
 } from '../../actions/index';
-import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
 
 class LoginForm extends Component {
@@ -28,16 +28,32 @@ class LoginForm extends Component {
   };
 
   handleLogin = e => {
+    e.preventDefault();
     const { email, password } = this.props.tempUser;
-    this.props.login(email, password);
-    this.props.updateUserInfo('', '', '');
-    this.props.updateIsLoggedIn(true);
+    const loginResponse = login( email, password )
+    .then( login => {
+      this.props.updateUserInfo('', '', '');
+      this.props.updateIsLoggedIn(true);
+      this.props.updateError('');
+    })
+    .catch( err => {
+      this.props.updateError(err);
+      
+    })
+  };
+
+  handleRedirect = () => {
+    if(this.props.isLoggedIn) {
+      return <Redirect to='/' />
+    }
   };
 
   render() {
-    console.log(this.props);
+    const { email, password } = this.props.tempUser;
     return (
       <section className='form'>
+        {this.handleRedirect()}
+        {this.props.error !== '' && <h4>{this.props.error}</h4>}
         <form>
           <input
             name='email'
@@ -53,9 +69,8 @@ class LoginForm extends Component {
             placeholder='Password'
             onChange={this.handleChange}
           />
-          <Link to='/'>
-            <button onClick={this.handleLogin}>Login</button>
-          </Link>
+          { email && password && <button onClick={this.handleLogin}>Login</button>}
+          {(!email || !password) && <button disabled>Login</button>}
         </form>
       </section>
     );
@@ -63,7 +78,6 @@ class LoginForm extends Component {
 }
 
 export const mapDispatchToProps = dispatch => ({
-  login: (email, password) => dispatch(login(email, password)),
   updateUserInfo: (name, email, password) =>
     dispatch(updateUserInfo(name, email, password)),
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
