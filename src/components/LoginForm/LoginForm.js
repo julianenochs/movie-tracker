@@ -12,13 +12,13 @@ class LoginForm extends Component {
     const inputName = e.target.name;
 
     switch(inputName) {
-      case 'email':
+      case 'email' :
         updateUserInfo(tempUser.name, e.target.value, tempUser.password);
         break;
-      case 'password':
+      case 'password' :
         updateUserInfo(tempUser.name, tempUser.email, e.target.value);
         break;
-      default:
+      default :
         updateUserInfo(tempUser.name, tempUser.email, tempUser.password);
         break;
     }
