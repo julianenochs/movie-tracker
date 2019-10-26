@@ -8,16 +8,17 @@ import { Route } from 'react-router-dom';
 import { addMovies, updateError } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
+import { favorite, getFavorites } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
     fetchPopularMovies()
-    .then(movies => {
-      this.props.addMovies(movies);
-    })
-    .catch(error => {
-      this.props.updateError(error);
-    });
+      .then(movies => {
+        this.props.addMovies(movies);
+      })
+      .catch(error => {
+        this.props.updateError(error);
+      });
   };
 
   render() {
@@ -34,12 +35,12 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
-  updateError: error => dispatch( updateError(error) )
+  updateError: error => dispatch(updateError(error))
 });
 
 const mapStateToProps = state => ({
   user: state.user,
-  error: state.error,
+  error: state.error
 });
 
 export default connect(
