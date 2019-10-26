@@ -5,18 +5,19 @@ import LoginForm from '../LoginForm/LoginForm';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
 import { Route } from 'react-router-dom';
-import { addMovies } from '../../actions/index';
+import { addMovies, updateError } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 
 class App extends Component {
   componentDidMount = async () => {
-    try {
-      const movies = await fetchPopularMovies();
+    fetchPopularMovies()
+    .then(movies => {
       this.props.addMovies(movies);
-    } catch (error) {
-      console.log(error);
-    }
+    })
+    .catch(error => {
+      this.props.updateError(error);
+    });
   };
 
   render() {
@@ -32,11 +33,13 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  addMovies: movies => dispatch(addMovies(movies))
+  addMovies: movies => dispatch(addMovies(movies)),
+  updateError: error => dispatch( updateError(error) )
 });
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  error: state.error,
 });
 
 export default connect(
