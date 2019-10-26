@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../apiCalls';
+import { login, getFavorites } from '../../apiCalls';
 import {
   updateUserInfo,
   updateIsLoggedIn,
   updateError,
   updateUser,
-  resetError,
+  resetError
 } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
@@ -29,24 +29,24 @@ class LoginForm extends Component {
     }
   };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.props.tempUser;
-    login( email, password )
-    .then( login => {
-      this.props.updateUser(this.props.tempUser.email);
-      this.props.updateIsLoggedIn(true);
-      this.props.resetError('');
-      this.props.updateUserInfo('', '', '');
-    })
-    .catch( err => {
-      this.props.updateError(err);
-    })
+    login(email, password)
+      .then(login => {
+        this.props.updateUser(this.props.tempUser.email, login.id);
+        this.props.updateIsLoggedIn(true);
+        this.props.resetError('');
+        this.props.updateUserInfo('', '', '');
+      })
+      .catch(err => {
+        this.props.updateError(err);
+      });
   };
 
   handleRedirect = () => {
-    if(this.props.isLoggedIn) {
-      return <Redirect to='/' />
+    if (this.props.isLoggedIn) {
+      return <Redirect to='/' />;
     }
   };
 
@@ -71,7 +71,9 @@ class LoginForm extends Component {
             placeholder='Password'
             onChange={this.handleChange}
           />
-          { email && password && <button onClick={this.handleLogin}>Login</button>}
+          {email && password && (
+            <button onClick={this.handleLogin}>Login</button>
+          )}
           {(!email || !password) && <button disabled>Login</button>}
         </form>
       </section>
@@ -84,8 +86,8 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(updateUserInfo(name, email, password)),
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
   updateError: errorMessage => dispatch(updateError(errorMessage)),
-  updateUser: email => dispatch( updateUser(email) ),
-  resetError: () => dispatch( resetError() ),
+  updateUser: (email, userId) => dispatch(updateUser(email, userId)),
+  resetError: () => dispatch(resetError())
 });
 
 export const mapStateToProps = state => ({
