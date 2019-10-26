@@ -3,10 +3,14 @@ import { login } from './Login';
 import { movies } from './addMovies';
 import { user } from './user';
 import { tempUser } from './tempUser';
+import { isLoggedIn } from './isLoggedIn';
+import { error } from './error';
 
 export const rootReducer = combineReducers({
   login,
   movies,
   user,
   tempUser,
+  isLoggedIn,
+  error
 });
