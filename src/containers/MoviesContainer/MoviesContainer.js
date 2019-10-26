@@ -5,13 +5,15 @@ import './MovieContainers.scss';
 
 const MoviesContainer = (props) => {
   const movies = props.movies.map((movie, i) => {
+    console.log(props.movies.map(movie => movie.id))
     return <MovieCard 
       title={movie.title} 
       poster={movie.poster_path} 
       overview={movie.overview}
-      key={i} 
-    />;
-  });
+      movieID={movie.id}
+      key={i}
+      />;
+    });
   return (
     <section className='movie__container'>
       {movies}

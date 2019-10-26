@@ -5,7 +5,8 @@ import starFavorited from '../../images/star-favorited.svg';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const MovieCard = ({ title, poster, overview, isLoggedIn }) => {
+const MovieCard = ({ title, poster, overview, movieID, isLoggedIn }) => {
+  console.log('id', movieID)
   return (
     <section className='movie__card'>
       <div>
@@ -22,15 +23,16 @@ const MovieCard = ({ title, poster, overview, isLoggedIn }) => {
         alt='movie poster'
       />
       <p className='overview'>{overview}</p>
-      {/* <img src='https://www.pinclipart.com/picdir/middle/33-337369_heart-shaped-clipart-instagram-heart-sign-icon-transparent.png' 
-          className='favorite__logo favorited'
-      /> */}
+      <NavLink to ={`/movies/${movieID}`}>
+        <div className='view-movie__div'>View Movie</div>
+      </NavLink>
     </section>
   );
 };
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn
+  isLoggedIn: state.isLoggedIn,
+  id: state.id
 });
 
 export default connect(

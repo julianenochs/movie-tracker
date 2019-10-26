@@ -4,6 +4,7 @@ import { fetchPopularMovies } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
+import MovieInfo from '../MovieInfo/MovieInfo';
 import { Route } from 'react-router-dom';
 import { addMovies, updateError } from '../../actions/index';
 import { connect } from 'react-redux';
@@ -27,6 +28,7 @@ class App extends Component {
         <Route exact path='/' component={MoviesContainer} />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
+        <Route exact path='/movies' component={MovieInfo} />
       </div>
     );
   }

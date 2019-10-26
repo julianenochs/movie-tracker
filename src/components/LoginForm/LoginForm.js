@@ -55,7 +55,7 @@ class LoginForm extends Component {
     return (
       <section className='form'>
         {this.handleRedirect()}
-        {this.props.error !== '' && <h4>{this.props.error}</h4>}
+        {this.props.error !== '' && <h4 className='error__message'>{this.props.error}</h4>}
         <form>
           <input
             name='email'
@@ -71,8 +71,8 @@ class LoginForm extends Component {
             placeholder='Password'
             onChange={this.handleChange}
           />
-          { email && password && <button onClick={this.handleLogin}>Login</button>}
-          {(!email || !password) && <button disabled>Login</button>}
+          { email && password && <button onClick={this.handleLogin} className='login__button'>Login</button>}
+          {(!email || !password) && <button className='login__button' disabled>Login</button>}
         </form>
       </section>
     );

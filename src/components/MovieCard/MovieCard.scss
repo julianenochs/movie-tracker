@@ -1,8 +1,12 @@
+$button-color: #004263;
+$button-shadow: #003149;
+
 img {
   width: 200px;
 }
 
 .movie__card {
+  align-items: center;
   background-color: rgba(0, 31, 46, 0.78);
   color: white;
   display: flex;
@@ -28,6 +32,19 @@ img {
 }
 
 .favorite__star {
-  height: 8vh;
-  width: 40%;
+  height: 4vh;
+  width: 20%;
+}
+
+.view-movie__div {
+  background-color: $button-color;
+  border: none;
+  box-shadow: 4px 4px $button-shadow;
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1em;
+  height: 40px;
+  letter-spacing: 5px;
+  text-decoration: none;
+  width: 120px;
 }
