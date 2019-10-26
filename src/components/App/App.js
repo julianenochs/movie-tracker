@@ -5,7 +5,7 @@ import LoginForm from '../LoginForm/LoginForm';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
 import { Route } from 'react-router-dom';
-import { addMovies, updateError } from '../../actions/index';
+import { addMovies, updateError, updateFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import { favorite, getFavorites, deleteFavorite } from '../../apiCalls';
@@ -21,11 +21,18 @@ class App extends Component {
       });
   };
 
+  loadFavorites = async () => {
+    const favoriteMovies = await getFavorites(this.props.user.userId);
+
+    this.props.updateFavorites(favoriteMovies);
+
+    console.log(favoriteMovies);
+  };
+
   render() {
-    // favorite(1, 1, '', 'test', '', '', '', '');
-    // favorite(1, 2, '', 'test', '', '', '', '');
-    deleteFavorite(1, 1);
-    getFavorites(1);
+    if (this.props.isLoggedIn) {
+      this.loadFavorites();
+    }
     return (
       <div className='app'>
         <Header />
@@ -39,12 +46,14 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
-  updateError: error => dispatch(updateError(error))
+  updateError: error => dispatch(updateError(error)),
+  updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
 const mapStateToProps = state => ({
   user: state.user,
-  error: state.error
+  error: state.error,
+  isLoggedIn: state.isLoggedIn
 });
 
 export default connect(

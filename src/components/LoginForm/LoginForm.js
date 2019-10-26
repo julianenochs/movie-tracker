@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from '../../apiCalls';
+import { login, getFavorites } from '../../apiCalls';
 import {
   updateUserInfo,
   updateIsLoggedIn,
@@ -29,12 +29,12 @@ class LoginForm extends Component {
     }
   };
 
-  handleLogin = e => {
+  handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.props.tempUser;
     login(email, password)
       .then(login => {
-        this.props.updateUser(this.props.tempUser.email);
+        this.props.updateUser(this.props.tempUser.email, login.id);
         this.props.updateIsLoggedIn(true);
         this.props.resetError('');
         this.props.updateUserInfo('', '', '');
@@ -86,7 +86,7 @@ export const mapDispatchToProps = dispatch => ({
     dispatch(updateUserInfo(name, email, password)),
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
   updateError: errorMessage => dispatch(updateError(errorMessage)),
-  updateUser: email => dispatch(updateUser(email)),
+  updateUser: (email, userId) => dispatch(updateUser(email, userId)),
   resetError: () => dispatch(resetError())
 });
 

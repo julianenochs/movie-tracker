@@ -83,6 +83,8 @@ export const getFavorites = async userId => {
   const favorites = await response.json();
 
   console.log(favorites);
+
+  return favorites;
 };
 
 export const deleteFavorite = async (userId, favoriteId) => {
