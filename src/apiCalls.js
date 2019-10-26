@@ -2,7 +2,11 @@ export const fetchPopularMovies = async () => {
   const response = await fetch(
     'https://api.themoviedb.org/3/movie/popular?api_key=5be60afe8a002cff163376db69b0add0&language=en-US&page=1'
   );
-  const popularMovies = await response.json();
+  let popularMovies = await response.json();
+  popularMovies.results.forEach(movie => {
+    return (movie.isFavorite = false);
+  });
+  console.log(popularMovies);
   return popularMovies.results;
 };
 
@@ -62,11 +66,11 @@ export const favorite = async (
       },
       body: JSON.stringify({
         movie_id: movieId,
-        title: 'test title',
-        poster_path: 'test poster',
-        release_date: 'test date',
-        vote_average: 'test average',
-        overview: 'test overview'
+        title: title,
+        poster_path: posterPath,
+        release_date: releaseDate,
+        vote_average: voteAverage,
+        overview: overview
       })
     }
   );

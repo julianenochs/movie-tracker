@@ -23,13 +23,22 @@ class App extends Component {
 
   loadFavorites = async () => {
     const favoriteMovies = await getFavorites(this.props.user.userId);
-
-    this.props.updateFavorites(favoriteMovies);
-
     console.log(favoriteMovies);
+    favoriteMovies.favorites.forEach(movie => {
+      console.log(movie);
+      let updateMovie = this.props.movies.find(
+        mov => mov.title === movie.title
+      );
+      if (updateMovie) {
+        console.log(updateMovie);
+        updateMovie.isFavorite = true;
+      }
+    });
+    this.props.updateFavorites(favoriteMovies);
   };
 
   render() {
+    favorite(1, 100, 'Joker', '', '', '', '');
     if (this.props.isLoggedIn) {
       this.loadFavorites();
     }
@@ -53,7 +62,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   user: state.user,
   error: state.error,
-  isLoggedIn: state.isLoggedIn
+  isLoggedIn: state.isLoggedIn,
+  movies: state.movies
 });
 
 export default connect(
