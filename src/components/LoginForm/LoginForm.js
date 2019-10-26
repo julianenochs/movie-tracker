@@ -71,15 +71,10 @@ class LoginForm extends Component {
             placeholder='Password'
             onChange={this.handleChange}
           />
-<<<<<<< HEAD
-          { email && password && <button onClick={this.handleLogin} className='login__button'>Login</button>}
-          {(!email || !password) && <button className='login__button' disabled>Login</button>}
-=======
           {email && password && (
             <button onClick={this.handleLogin}>Login</button>
           )}
           {(!email || !password) && <button disabled>Login</button>}
->>>>>>> master
         </form>
       </section>
     );
