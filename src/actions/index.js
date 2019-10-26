@@ -17,7 +17,6 @@ export const updateIsLoggedIn = boolean => ({
   boolean
 });
 
-
 //error actions
 export const updateError = errorMessage => ({
   type: 'UPDATE_ERROR',
@@ -26,9 +25,19 @@ export const updateError = errorMessage => ({
 
 export const resetError = () => ({
   type: 'RESET_ERROR'
-})
+});
 
-export const updateUser = ( email ) => ({
+export const updateUser = (email, userId) => ({
   type: 'UPDATE_USER',
   email,
+  userId
+});
+
+export const resetUser = () => ({
+  type: 'RESET_USER'
+});
+
+export const updateFavorites = favorites => ({
+  type: 'UPDATE_FAVORITES',
+  favorites
 });
