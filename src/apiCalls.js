@@ -61,7 +61,7 @@ export const favorite = async (
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        movie_id: 1,
+        movie_id: movieId,
         title: 'test title',
         poster_path: 'test poster',
         release_date: 'test date',
@@ -83,4 +83,13 @@ export const getFavorites = async userId => {
   const favorites = await response.json();
 
   console.log(favorites);
+};
+
+export const deleteFavorite = async (userId, favoriteId) => {
+  await fetch(
+    `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${favoriteId}`,
+    {
+      method: 'DELETE'
+    }
+  );
 };

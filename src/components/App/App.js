@@ -8,7 +8,7 @@ import { Route } from 'react-router-dom';
 import { addMovies, updateError } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
-import { favorite, getFavorites } from '../../apiCalls';
+import { favorite, getFavorites, deleteFavorite } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -22,6 +22,10 @@ class App extends Component {
   };
 
   render() {
+    // favorite(1, 1, '', 'test', '', '', '', '');
+    // favorite(1, 2, '', 'test', '', '', '', '');
+    deleteFavorite(1, 1);
+    getFavorites(1);
     return (
       <div className='app'>
         <Header />
