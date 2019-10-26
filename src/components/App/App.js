@@ -6,22 +6,43 @@ import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import { Route } from 'react-router-dom';
-import { addMovies, updateError } from '../../actions/index';
+import { addMovies, updateError, updateFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
+import { favorite, getFavorites, deleteFavorite } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
     fetchPopularMovies()
-    .then(movies => {
-      this.props.addMovies(movies);
-    })
-    .catch(error => {
-      this.props.updateError(error);
+      .then(movies => {
+        this.props.addMovies(movies);
+      })
+      .catch(error => {
+        this.props.updateError(error);
+      });
+  };
+
+  loadFavorites = async () => {
+    const favoriteMovies = await getFavorites(this.props.user.userId);
+    console.log(favoriteMovies);
+    favoriteMovies.favorites.forEach(movie => {
+      console.log(movie);
+      let updateMovie = this.props.movies.find(
+        mov => mov.title === movie.title
+      );
+      if (updateMovie) {
+        console.log(updateMovie);
+        updateMovie.isFavorite = true;
+      }
     });
+    this.props.updateFavorites(favoriteMovies);
   };
 
   render() {
+    favorite(1, 100, 'Joker', '', '', '', '');
+    if (this.props.isLoggedIn) {
+      this.loadFavorites();
+    }
     return (
       <div className='app'>
         <Header />
@@ -36,12 +57,15 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
-  updateError: error => dispatch( updateError(error) )
+  updateError: error => dispatch(updateError(error)),
+  updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
 const mapStateToProps = state => ({
   user: state.user,
   error: state.error,
+  isLoggedIn: state.isLoggedIn,
+  movies: state.movies
 });
 
 export default connect(
