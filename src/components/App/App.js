@@ -11,12 +11,6 @@ import Header from '../../Header/header';
 
 class App extends Component {
   componentDidMount = async () => {
-    // try {
-    //   const movies = await fetchPopularMovies();
-    //   this.props.addMovies(movies);
-    // } catch (error) {
-    //   this.props.updateError(error);
-    // }
     fetchPopularMovies()
     .then(movies => {
       this.props.addMovies(movies);
