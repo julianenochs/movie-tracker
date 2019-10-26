@@ -3,3 +3,41 @@ export const fetchPopularMovies = async () => {
   const popularMovies = await response.json();
   return popularMovies.results;
 }
+
+export const login = async (email, password) => {
+  const response = await fetch('http://localhost:3001/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password
+        })
+      })
+  if(!response.ok) {
+    throw Error('Invalid username or password');
+  }
+  const data = await response.json();
+  
+  return data;
+}
+
+export const register = async (name, email, password) => {
+  const response = await fetch('http://localhost:3001/api/v1/users', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      password: password
+    }),
+  });
+  if(!response.ok) {
+    throw Error('That email is already taken')
+  }
+  const data = await response.json();
+  return data;
+}

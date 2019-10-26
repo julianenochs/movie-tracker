@@ -1,28 +1,9 @@
-export const addUser = ({ email, password }) => ({
-  type: 'ADD_USER',
-  email,
-  password
-});
-
 export const addMovies = movies => ({
   type: 'ADD_MOVIES',
   movies
 });
 
-export const login = (email, password, error) => ({
-  type: 'LOGIN',
-  email,
-  password,
-  error
-});
-
-export const register = (name, email, password) => ({
-  type: 'REGISTER',
-  name,
-  email,
-  password
-});
-
+//tempUser actions
 export const updateUserInfo = (name, email, password) => ({
   type: 'UPDATE_USER_INFO',
   name,
@@ -30,19 +11,24 @@ export const updateUserInfo = (name, email, password) => ({
   password
 });
 
+//isLoggedInActions
 export const updateIsLoggedIn = boolean => ({
   type: 'UPDATE_IS_LOGGED_IN',
   boolean
 });
 
+
+//error actions
 export const updateError = errorMessage => ({
   type: 'UPDATE_ERROR',
   errorMessage
 });
 
-export const resetUser = (email, loggedIn, error) => ({
-  type: 'RESET_USER',
+export const resetError = () => ({
+  type: 'RESET_ERROR'
+})
+
+export const updateUser = ( email ) => ({
+  type: 'UPDATE_USER',
   email,
-  loggedIn,
-  error
 });
