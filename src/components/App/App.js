@@ -28,7 +28,7 @@ class App extends Component {
         <Route exact path='/' component={MoviesContainer} />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
-        <Route exact path='/movies' component={MovieInfo} />
+        <Route exact path='/movies:id' component={MovieInfo} />
       </div>
     );
   }
