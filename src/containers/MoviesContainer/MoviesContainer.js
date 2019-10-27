@@ -4,7 +4,6 @@ import MovieCard from '../../components/MovieCard/MovieCard';
 import './MovieContainers.scss';
 
 const MoviesContainer = (props) => {
-  console.log('props', props)
   const movies = props.movies.map((movie, i) => {
     return <MovieCard 
       title={movie.title} 
