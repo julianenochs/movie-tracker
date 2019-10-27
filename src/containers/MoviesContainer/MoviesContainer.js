@@ -9,9 +9,11 @@ const MoviesContainer = (props) => {
       title={movie.title} 
       poster={movie.poster_path} 
       overview={movie.overview}
-      key={i} 
-    />;
-  });
+      movieID={movie.id}
+      key={i}
+      // selectMovieToDisplay={props.selectMovieToDisplay}
+      />;
+    });
   return (
     <section className='movie__container'>
       {movies}

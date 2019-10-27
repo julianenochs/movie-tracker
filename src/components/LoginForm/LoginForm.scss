@@ -1,0 +1,35 @@
+$button-color: #004263;
+$button-shadow: #003149;
+
+.form {
+  width: 65%;
+}
+
+form {
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+input {
+  height: 40px;
+  font-size: 1em;
+  margin: 8%;
+  width: 28%;
+}
+
+.login__button {
+  background-color: $button-color;
+  border: none;
+  box-shadow: 4px 4px $button-shadow;
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5em;
+  height: 40px;
+  letter-spacing: 5px;
+  width: 120px;
+}
+
+.error__message {
+  color: white;
+}

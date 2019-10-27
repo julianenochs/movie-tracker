@@ -20,10 +20,10 @@ class LoginForm extends Component {
       case 'email':
         updateUserInfo(tempUser.name, e.target.value, tempUser.password);
         break;
-      case 'password':
+      case 'password' :
         updateUserInfo(tempUser.name, tempUser.email, e.target.value);
         break;
-      default:
+      default :
         updateUserInfo(tempUser.name, tempUser.email, tempUser.password);
         break;
     }
@@ -55,7 +55,7 @@ class LoginForm extends Component {
     return (
       <section className='form'>
         {this.handleRedirect()}
-        {this.props.error !== '' && <h4>{this.props.error}</h4>}
+        {this.props.error !== '' && <h4 className='error__message'>{this.props.error}</h4>}
         <form>
           <input
             name='email'
@@ -83,7 +83,7 @@ class LoginForm extends Component {
 
 export const mapDispatchToProps = dispatch => ({
   updateUserInfo: (name, email, password) =>
-    dispatch(updateUserInfo(name, email, password)),
+  dispatch(updateUserInfo(name, email, password)),
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
   updateError: errorMessage => dispatch(updateError(errorMessage)),
   updateUser: (email, userId) => dispatch(updateUser(email, userId)),

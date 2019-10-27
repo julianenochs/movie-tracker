@@ -41,3 +41,8 @@ export const updateFavorites = favorites => ({
   type: 'UPDATE_FAVORITES',
   favorites
 });
+
+export const selectMovie = movie => ({
+  type: 'SELECT_MOVIE',
+  movie
+})
