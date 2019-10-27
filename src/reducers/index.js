@@ -6,6 +6,7 @@ import { tempUser } from './tempUser';
 import { isLoggedIn } from './isLoggedIn';
 import { error } from './error';
 import { favorites } from './favorites';
+import { selectMovie } from './selectMovie';
 
 export const rootReducer = combineReducers({
   login,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
   tempUser,
   isLoggedIn,
   error,
-  favorites
+  favorites,
+  selectMovie
 });
