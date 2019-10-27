@@ -5,7 +5,7 @@ import starFavorited from '../../images/star-favorited.svg';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const MovieCard = ({ title, poster, overview, isLoggedIn, favorites }) => {
+const MovieCard = ({ title, poster, overview, movieID, isLoggedIn, selectMovieToDisplay, favorites }) => {
   const isFavorite = favorites.find(fav => fav.title === title);
   const starUrl = isFavorite ? starFavorited : star;
   return (
@@ -15,7 +15,7 @@ const MovieCard = ({ title, poster, overview, isLoggedIn, favorites }) => {
         {isLoggedIn && <img src={starUrl} />}
         {!isLoggedIn && (
           <NavLink to='/login'>
-            <img src={star} />
+            <img src={star} className='favorite__star'/>
           </NavLink>
         )}
       </div>
@@ -24,9 +24,9 @@ const MovieCard = ({ title, poster, overview, isLoggedIn, favorites }) => {
         alt='movie poster'
       />
       <p className='overview'>{overview}</p>
-      {/* <img src='https://www.pinclipart.com/picdir/middle/33-337369_heart-shaped-clipart-instagram-heart-sign-icon-transparent.png' 
-          className='favorite__logo favorited'
-      /> */}
+      <NavLink to ={`/movies/${movieID}`}>
+        <div className='view-movie__div' >View Movie</div>
+      </NavLink>
     </section>
   );
 };
@@ -34,6 +34,7 @@ const MovieCard = ({ title, poster, overview, isLoggedIn, favorites }) => {
 const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   favorites: state.favorites,
+  id: state.id
 });
 
 export default connect(

@@ -4,15 +4,9 @@ $shadow-color-two: #4C3410;
 $button-color: #004263;
 $button-shadow: #003149;
 
-.header {
-  align-items: center;
-  color: $header-color;
-  display: flex;
+
+h1 {
   font-family: 'Fascinate Inline', cursive;
-  font-size: 2em;
-  height: 10vh;
-  justify-content: space-between;
-  letter-spacing: 7px;
   text-shadow: 0 1px 0px $shadow-color-one,
     1px 0 0px $shadow-color-two,
     1px 2px 1px $shadow-color-one,
@@ -20,6 +14,17 @@ $button-shadow: #003149;
     2px 3px 2px $shadow-color-one,
     3px 2px 2px $shadow-color-two,
     3px 4px 2px $shadow-color-one;
+  }
+  
+  .header {
+  align-items: center;
+  color: $header-color;
+  display: flex;
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 2em;
+  height: 10vh;
+  letter-spacing: 7px;
+  justify-content: space-between;
   width: 85%;
 }
 
@@ -33,4 +38,9 @@ $button-shadow: #003149;
   height: 40px;
   letter-spacing: 5px;
   width: 120px;
+}
+
+h3 {
+  font-family: 'Staatliches', cursive;
+
 }

@@ -6,7 +6,6 @@ export const fetchPopularMovies = async () => {
   popularMovies.results.forEach(movie => {
     return (movie.isFavorite = false);
   });
-  console.log(popularMovies);
   return popularMovies.results;
 };
 
