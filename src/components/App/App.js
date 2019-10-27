@@ -44,7 +44,7 @@ class App extends Component {
     let selectedMovie = this.props.movies.find(movie => movie.id === id);
     console.log('selectedMovie', selectedMovie);
     this.props.selectMovie(selectedMovie);
-    // return selectedMovie;
+    return selectedMovie;
   };
 
   render() {

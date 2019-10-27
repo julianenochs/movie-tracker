@@ -1,12 +1,22 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const MovieInfo = props => {
   console.log('props', props);
   return (
     <section>
-      <h1>hi</h1>
+      <h1>Title: {props.selectMovie.title}</h1>
+      <h1>Release Date: {props.selectMovie.release_date}</h1>
+      <h1>Vote Average: {props.selectMovie.vote_average}</h1>
     </section>
   );
 };
 
-export default MovieInfo;
+const mapStateToProps = state => ({
+  selectMovie: state.selectMovie
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(MovieInfo);
