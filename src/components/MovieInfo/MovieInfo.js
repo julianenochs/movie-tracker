@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 const MovieInfo = props => {
   console.log('props', props);
+  const selectMovie = props.selectMovieToDisplay(props.id);
   return (
     <section>
       <h1>Title: {props.selectMovie.title}</h1>
