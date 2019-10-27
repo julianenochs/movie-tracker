@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 import { addMovies, updateError, updateFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
-import { favorite, getFavorites, deleteFavorite } from '../../apiCalls';
+import { getFavorites } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -35,26 +35,25 @@ class App extends Component {
     this.props.updateFavorites(favoriteMovies);
   };
 
-  selectMovieToDisplay = (id) => {
-    let selectedMovie = this.props.movies.find(movie => movie.id === id)
-    console.log('selectedMovie', selectedMovie)
-    // this.props.selectMovie()
-  }
+  // selectMovieToDisplay = (id) => {
+  //   let selectedMovie = this.props.movies.find(movie => movie.id === id)
+  // }
 
   render() {
     // deleteFavorite(1, 100);
     // favorite(1, 100, 'Joker', '', '', '', '');
-    if (this.props.isLoggedIn && this.props.favorites.length > 0) {
-      this.loadFavorites();
+    if (this.props.isLoggedIn) {
+        this.loadFavorites()
+        .catch( error => console.log('no favs'));
     }
     return (
       <div className='app'>
         <Header />
-        <Route exact path='/' component={MoviesContainer} selectMovieToDisplay={this.selectMovieToDisplay} />
+        <Route exact path='/' component={MoviesContainer} />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
-        {this.props.movies.map(movie => {
-          return <Route exact path={`/movies/${movie.id}`} component={MovieInfo}/>
+        {this.props.movies.map((movie, i) => {
+          return <Route key={i} exact path={`/movies/${movie.id}`} component={MovieInfo}/>
         })}
       </div>
     );

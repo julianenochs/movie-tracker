@@ -12,10 +12,10 @@ const MovieCard = ({ title, poster, overview, movieID, isLoggedIn, selectMovieTo
     <section className='movie__card'>
       <div>
         <h1 className='movie__title'>{title}</h1>
-        {isLoggedIn && <img src={starUrl} />}
+        {isLoggedIn && <img src={starUrl} alt='favorite-button' />}
         {!isLoggedIn && (
           <NavLink to='/login'>
-            <img src={star} className='favorite__star'/>
+            <img src={star} className='favorite__star' alt='favorite-button' />
           </NavLink>
         )}
       </div>
