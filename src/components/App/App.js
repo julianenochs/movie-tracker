@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     // deleteFavorite(1, 100);
     // favorite(1, 100, 'Joker', '', '', '', '');
-    if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn && this.props.favorites.length > 0) {
       this.loadFavorites();
     }
     return (
@@ -71,7 +71,8 @@ const mapStateToProps = state => ({
   user: state.user,
   error: state.error,
   isLoggedIn: state.isLoggedIn,
-  movies: state.movies
+  movies: state.movies,
+  favorites: state.favorites,
 });
 
 export default connect(
