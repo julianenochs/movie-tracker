@@ -49,10 +49,13 @@ class App extends Component {
     return (
       <div className='app'>
         <Header />
-        <Route exact path='/' component={MoviesContainer} />
+        <Route exact path='/' component={MoviesContainer} selectMovieToDisplay={this.selectMovieToDisplay} />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
-        <Route exact path='/movies:id' component={MovieInfo} selectMovieToDisplay={this.selectMovieToDisplay} />
+        {/* <Route exact path='/movies:id' component={MovieInfo} /> */}
+        {this.props.movies.map(movie => {
+          return <Route exact path={`/movies/${movie.id}`} component={MovieInfo}/>
+        })}
       </div>
     );
   }
