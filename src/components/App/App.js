@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom';
 import { addMovies, updateError, updateFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
-import { getFavorites } from '../../apiCalls';
+import { getFavorites, deleteFavorite, favorite } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -22,30 +22,10 @@ class App extends Component {
       });
   };
 
-  loadFavorites = async () => {
-    const favoriteMovies = await getFavorites(this.props.user.userId);
-    favoriteMovies.favorites.forEach(movie => {
-      let updateMovie = this.props.movies.find(
-        mov => mov.title === movie.title
-      );
-      if (updateMovie) {
-        updateMovie.isFavorite = true;
-      }
-    });
-    this.props.updateFavorites(favoriteMovies);
-  };
-
-  // selectMovieToDisplay = (id) => {
-  //   let selectedMovie = this.props.movies.find(movie => movie.id === id)
-  // }
-
   render() {
-    // deleteFavorite(1, 100);
-    // favorite(1, 100, 'Joker', '', '', '', '');
-    if (this.props.isLoggedIn) {
-        this.loadFavorites()
-        .catch( error => console.log('no favs'));
-    }
+    // deleteFavorite(1,100);
+    // favorite(1, 559969, "El Camino: A Breaking Bad Movie", "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg", "2019-10-11", 7.1, "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.")
+    
     return (
       <div className='app'>
         <Header />

@@ -36,7 +36,6 @@ class RegisterForm extends Component {
     const { name, email, password } = this.props.tempUser;
     register(name, email, password)
     .then(data => {
-      console.log(data.id, 'data');
       this.props.updateIsLoggedIn(true);
       this.props.updateUser(email, data.id);
       this.props.resetError();
