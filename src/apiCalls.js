@@ -77,7 +77,6 @@ export const favorite = async (
 
   const favoriteResponse = await response.json();
 
-  console.log(favoriteResponse);
 };
 
 export const getFavorites = async userId => {
@@ -85,9 +84,6 @@ export const getFavorites = async userId => {
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites`
   );
   const favorites = await response.json();
-
-  console.log(favorites);
-
   return favorites;
 };
 

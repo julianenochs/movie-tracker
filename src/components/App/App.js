@@ -23,14 +23,11 @@ class App extends Component {
 
   loadFavorites = async () => {
     const favoriteMovies = await getFavorites(this.props.user.userId);
-    console.log(favoriteMovies);
     favoriteMovies.favorites.forEach(movie => {
-      console.log(movie);
       let updateMovie = this.props.movies.find(
         mov => mov.title === movie.title
       );
       if (updateMovie) {
-        console.log(updateMovie);
         updateMovie.isFavorite = true;
       }
     });
@@ -38,7 +35,8 @@ class App extends Component {
   };
 
   render() {
-    favorite(1, 100, 'Joker', '', '', '', '');
+    // deleteFavorite(1, 100);
+    // favorite(1, 100, 'Joker', '', '', '', '');
     if (this.props.isLoggedIn) {
       this.loadFavorites();
     }

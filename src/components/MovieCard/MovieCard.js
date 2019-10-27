@@ -5,12 +5,14 @@ import starFavorited from '../../images/star-favorited.svg';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const MovieCard = ({ title, poster, overview, isLoggedIn }) => {
+const MovieCard = ({ title, poster, overview, isLoggedIn, favorites }) => {
+  const isFavorite = favorites.find(fav => fav.title === title);
+  const starUrl = isFavorite ? starFavorited : star;
   return (
     <section className='movie__card'>
       <div>
         <h1 className='movie__title'>{title}</h1>
-        {isLoggedIn && <img src={star} />}
+        {isLoggedIn && <img src={starUrl} />}
         {!isLoggedIn && (
           <NavLink to='/login'>
             <img src={star} />
@@ -30,12 +32,11 @@ const MovieCard = ({ title, poster, overview, isLoggedIn }) => {
 };
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.isLoggedIn
+  isLoggedIn: state.isLoggedIn,
+  favorites: state.favorites,
 });
 
 export default connect(
   mapStateToProps,
   null
 )(MovieCard);
-
-// https://image.tmdb.org/t/p/original/${poster_path}
