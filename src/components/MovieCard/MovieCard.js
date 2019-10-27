@@ -11,26 +11,25 @@ class MovieCard extends Component {
 
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
-    this.props.updateFavorites(favorites);
-    this.forceUpdate();
+
+    const update = await this.props.updateFavorites(favorites);
   }
 
-  handleUnfavorite = (e) => {
-    e.preventDefault();
+  handleUnfavorite = async (e) => {
     const userId = this.props.user.userId;
     const movieId = Number(e.target.closest('section').id);
-    deleteFavorite(userId, movieId);
-    this.refreshFavorites();
+    const deleter = await deleteFavorite(userId, movieId);
+    const test = await this.refreshFavorites();
   }
 
-  handleFavorite = (e) => {
-    e.preventDefault();
+  handleFavorite = async (e) => {
     const userId = this.props.user.userId;
     const curMovieId = Number(e.target.closest('section').id);
     const movie = this.props.movies.find(movie => movie.id === curMovieId);
     const {id, title, poster_path, release_date, vote_average} = movie;
-    favorite(userId, id, title, poster_path, release_date, vote_average, 'overview');
-    this.refreshFavorites();
+    const favorited = await favorite(userId, id, title, poster_path, release_date, vote_average, 'overview')
+      .then(fav => fav);
+    this.props.updateFavorites({favorites: [...this.props.favorites, favorited] });
   }
 
   render() {

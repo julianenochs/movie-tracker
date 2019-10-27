@@ -11,6 +11,7 @@ const MoviesContainer = (props) => {
       overview={movie.overview}
       movieID={movie.id}
       key={i}
+      selectMovieToDisplay={props.selectMovieToDisplay}
       />;
     });
   return (

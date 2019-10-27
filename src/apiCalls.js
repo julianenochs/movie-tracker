@@ -56,8 +56,7 @@ export const favorite = async (
   voteAverage,
   overview
 ) => {
-  console.log(userId, movieId, title, posterPath, releaseDate, voteAverage, overview);
-  fetch(
+  const resp = await fetch(
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites`,
     {
       method: 'POST',
@@ -74,6 +73,8 @@ export const favorite = async (
       })
     }
   );
+  const fav = await resp.json();
+  return fav;
 };
 
 export const getFavorites = async userId => {
