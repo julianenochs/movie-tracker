@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login, getFavorites, loadFavorites } from '../../apiCalls';
+import { login, getFavorites } from '../../apiCalls';
 import {
   updateUserInfo,
   updateIsLoggedIn,

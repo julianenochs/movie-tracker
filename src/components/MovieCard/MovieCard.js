@@ -8,9 +8,6 @@ import { deleteFavorite, favorite, getFavorites } from '../../apiCalls';
 import { updateFavorites } from '../../actions/index';
 
 class MovieCard extends Component {
-  constructor(props){
-    super(props);
-  }
 
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
@@ -31,13 +28,13 @@ class MovieCard extends Component {
     const userId = this.props.user.userId;
     const curMovieId = Number(e.target.closest('section').id);
     const movie = this.props.movies.find(movie => movie.id === curMovieId);
-    const {id, title, poster_path, release_date, vote_average, overview} = movie;
+    const {id, title, poster_path, release_date, vote_average} = movie;
     favorite(userId, id, title, poster_path, release_date, vote_average, 'overview');
     this.refreshFavorites();
   }
 
   render() {
-    const { title, poster, overview, movieID, isLoggedIn, selectMovieToDisplay, favorites } = this.props;
+    const { title, poster, overview, movieID, isLoggedIn, favorites } = this.props;
     const isFavorite = favorites.find(fav => fav.title === title);
     const starUrl = isFavorite ? starFavorited : star;
     const handleFavoriting = isFavorite ? this.handleUnfavorite : this.handleFavorite;

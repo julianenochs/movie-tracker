@@ -9,7 +9,6 @@ import { Route } from 'react-router-dom';
 import { addMovies, updateError, updateFavorites } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
-import { getFavorites, deleteFavorite, favorite } from '../../apiCalls';
 
 class App extends Component {
   componentDidMount = async () => {
