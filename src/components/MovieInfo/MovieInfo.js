@@ -1,6 +1,7 @@
 import React from 'react';
 
-const MovieInfo = (movie) => {
+const MovieInfo = (props) => {
+  console.log('props', props)
   return(
     <section>
       <h1>hi</h1>

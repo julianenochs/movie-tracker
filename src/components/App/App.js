@@ -6,7 +6,7 @@ import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
 import MovieInfo from '../MovieInfo/MovieInfo';
 import { Route } from 'react-router-dom';
-import { addMovies, updateError, updateFavorites } from '../../actions/index';
+import { addMovies, updateError, updateFavorites, selectMovie } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import { favorite, getFavorites, deleteFavorite } from '../../apiCalls';
@@ -38,7 +38,8 @@ class App extends Component {
   selectMovieToDisplay = (id) => {
     let selectedMovie = this.props.movies.find(movie => movie.id === id)
     console.log('selectedMovie', selectedMovie)
-    // this.props.selectMovie()
+    selectMovie(selectedMovie)
+    return selectedMovie
   }
 
   render() {
@@ -49,11 +50,11 @@ class App extends Component {
     return (
       <div className='app'>
         <Header />
-        <Route exact path='/' component={MoviesContainer} selectMovieToDisplay={this.selectMovieToDisplay} />
+        <Route exact path='/' render={(props) => <MoviesContainer {...props} selectMovieToDisplay={this.selectMovieToDisplay} />} />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
         {this.props.movies.map(movie => {
-          return <Route exact path={`/movies/${movie.id}`} component={MovieInfo}/>
+          return <Route exact path={`/movies/${movie.id}`} render={(props) => <MovieInfo {...props} selectMovieToDisplay={this.selectMovieToDisplay} />}/>
         })}
       </div>
     );
@@ -70,7 +71,9 @@ const mapStateToProps = state => ({
   user: state.user,
   error: state.error,
   isLoggedIn: state.isLoggedIn,
-  movies: state.movies
+  movies: state.movies,
+  selectMovieToDisplay: state.selectMovieToDisplay,
+  selectedMovie: state.selectedMovie
 });
 
 export default connect(

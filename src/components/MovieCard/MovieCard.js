@@ -23,7 +23,7 @@ const MovieCard = ({ title, poster, overview, movieID, isLoggedIn, selectMovieTo
       />
       <p className='overview'>{overview}</p>
       <NavLink to ={`/movies/${movieID}`}>
-        <div className='view-movie__div' >View Movie</div>
+        <div className='view-movie__div' onClick={() => selectMovieToDisplay(movieID)}>View Movie</div>
       </NavLink>
     </section>
   );
