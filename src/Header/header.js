@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './header.scss';
 import { NavLink } from 'react-router-dom';
-import { updateIsLoggedIn, updateUser } from '../actions';
+import { updateIsLoggedIn, updateUser, resetMovies, updateFavorites } from '../actions';
 import { connect } from 'react-redux';
 
 class Header extends Component {
   handleSignout = () => {
     this.props.updateIsLoggedIn(false);
     this.props.updateUser('');
+    this.props.updateFavorites({favorites: []});
+    this.props.resetMovies();
   };
 
   render() {
@@ -34,7 +36,9 @@ class Header extends Component {
 const mapDispatchToProps = dispatch => ({
   updateIsLoggedIn: boolean => dispatch( updateIsLoggedIn(boolean) ),
   updateUser: email =>
-    dispatch( updateUser(email) )
+    dispatch( updateUser(email) ),
+  updateFavorites: favorites => dispatch( updateFavorites(favorites) ),
+  resetMovies: () => dispatch( resetMovies() ),
 });
 
 const mapStateToProps = state => ({

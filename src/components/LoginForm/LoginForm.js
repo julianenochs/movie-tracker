@@ -6,7 +6,8 @@ import {
   updateIsLoggedIn,
   updateError,
   updateUser,
-  resetError
+  resetError,
+  updateFavorites,
 } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
@@ -29,6 +30,19 @@ class LoginForm extends Component {
     }
   };
 
+  loadFavorites = async () => {
+    const favoriteMovies = await getFavorites(this.props.user.userId);
+    favoriteMovies.favorites.forEach(movie => {
+      let updateMovie = this.props.movies.find(
+        mov => mov.title === movie.title
+      );
+      if (updateMovie) {
+        updateMovie.isFavorite = true;
+      }
+    });
+    this.props.updateFavorites(favoriteMovies);
+  };
+
   handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.props.tempUser;
@@ -38,6 +52,7 @@ class LoginForm extends Component {
         this.props.updateIsLoggedIn(true);
         this.props.resetError('');
         this.props.updateUserInfo('', '', '');
+        this.loadFavorites()
       })
       .catch(err => {
         this.props.updateError(err);
@@ -87,14 +102,16 @@ export const mapDispatchToProps = dispatch => ({
   updateIsLoggedIn: boolean => dispatch(updateIsLoggedIn(boolean)),
   updateError: errorMessage => dispatch(updateError(errorMessage)),
   updateUser: (email, userId) => dispatch(updateUser(email, userId)),
-  resetError: () => dispatch(resetError())
+  resetError: () => dispatch(resetError()),
+  updateFavorites: favorites => dispatch( updateFavorites(favorites) ),
 });
 
 export const mapStateToProps = state => ({
   user: state.user,
   tempUser: state.tempUser,
   isLoggedIn: state.isLoggedIn,
-  error: state.error
+  error: state.error,
+  movies: state.movies,
 });
 
 export default connect(

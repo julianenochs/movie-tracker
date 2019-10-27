@@ -6,7 +6,6 @@ export const fetchPopularMovies = async () => {
   popularMovies.results.forEach(movie => {
     return (movie.isFavorite = false);
   });
-  console.log(popularMovies);
   return popularMovies.results;
 };
 
@@ -57,7 +56,7 @@ export const favorite = async (
   voteAverage,
   overview
 ) => {
-  const response = await fetch(
+  const resp = await fetch(
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites`,
     {
       method: 'POST',
@@ -74,10 +73,8 @@ export const favorite = async (
       })
     }
   );
-
-  const favoriteResponse = await response.json();
-
-  console.log(favoriteResponse);
+  const fav = await resp.json();
+  return fav;
 };
 
 export const getFavorites = async userId => {
@@ -85,9 +82,6 @@ export const getFavorites = async userId => {
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites`
   );
   const favorites = await response.json();
-
-  console.log(favorites);
-
   return favorites;
 };
 

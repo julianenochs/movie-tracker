@@ -3,6 +3,10 @@ export const addMovies = movies => ({
   movies
 });
 
+export const resetMovies = () => ({
+  type: 'RESET_MOVIES',
+});
+
 //tempUser actions
 export const updateUserInfo = (name, email, password) => ({
   type: 'UPDATE_USER_INFO',
