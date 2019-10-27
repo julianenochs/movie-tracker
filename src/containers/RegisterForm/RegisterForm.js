@@ -87,7 +87,7 @@ class RegisterForm extends Component {
 const mapDispatchToProps = dispatch => ({
   updateUserInfo: (name, email, password) =>
     dispatch(updateUserInfo(name, email, password)),
-  updateUser: email => dispatch( updateUser(email) ),
+  updateUser: (email, id) => dispatch( updateUser(email, id) ),
   updateIsLoggedIn: bool => dispatch( updateIsLoggedIn(bool) ),
   updateError: error => dispatch( updateError(error) ),
   resetError: () => dispatch( resetError() ),
