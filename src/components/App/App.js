@@ -61,6 +61,7 @@ class App extends Component {
                 <MovieInfo
                   {...props}
                   selectMovieToDisplay={this.selectMovieToDisplay}
+                  id={movie.id}
                 />
               )}
             />
