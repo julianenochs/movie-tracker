@@ -5,8 +5,7 @@ import starFavorited from '../../images/star-favorited.svg';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const MovieCard = ({ title, poster, overview, movieID, isLoggedIn }) => {
-  console.log('id', movieID)
+const MovieCard = ({ title, poster, overview, movieID, isLoggedIn, selectMovieToDisplay }) => {
   return (
     <section className='movie__card'>
       <div>
@@ -24,7 +23,7 @@ const MovieCard = ({ title, poster, overview, movieID, isLoggedIn }) => {
       />
       <p className='overview'>{overview}</p>
       <NavLink to ={`/movies/${movieID}`}>
-        <div className='view-movie__div'>View Movie</div>
+        <div className='view-movie__div' onClick={selectMovieToDisplay(movieID)} >View Movie</div>
       </NavLink>
     </section>
   );

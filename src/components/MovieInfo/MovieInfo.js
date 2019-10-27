@@ -1,7 +1,6 @@
-import { connect } from 'react-redux';
 import React from 'react';
 
-const MovieInfo = () => {
+const MovieInfo = (movie) => {
   return(
     <section>
       <h1>hi</h1>
