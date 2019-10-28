@@ -14,6 +14,7 @@ import {
 } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
+import Favorites from '../../Favorites/Favorites';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -34,7 +35,6 @@ class App extends Component {
   };
 
   render() {
-    
     return (
       <div className='app'>
         <Header />
@@ -65,6 +65,7 @@ class App extends Component {
             />
           );
         })}
+        <Route exact path='/favorites' component={Favorites} />
       </div>
     );
   }
