@@ -87,9 +87,9 @@ class LoginForm extends Component {
             onChange={this.handleChange}
           />
           {email && password && (
-            <button onClick={this.handleLogin}>Login</button>
+            <button onClick={this.handleLogin} className='login__button'>Login</button>
           )}
-          {(!email || !password) && <button disabled>Login</button>}
+          {(!email || !password) && <button disabled className='login__button'>Login</button>}
         </form>
       </section>
     );

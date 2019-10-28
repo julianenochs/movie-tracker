@@ -78,7 +78,7 @@ class RegisterForm extends Component {
           placeholder='Password'
           onChange={this.handleChange}
         />
-          <button onClick={this.handleRegister}>Register</button>
+          <button onClick={this.handleRegister} className='register__button'>Register</button>
       </form>
     );
   }
