@@ -4,7 +4,7 @@ export const addMovies = movies => ({
 });
 
 export const resetMovies = () => ({
-  type: 'RESET_MOVIES',
+  type: 'RESET_MOVIES'
 });
 
 //tempUser actions
@@ -49,4 +49,9 @@ export const updateFavorites = favorites => ({
 export const selectMovie = movie => ({
   type: 'SELECT_MOVIE',
   movie
-})
+});
+
+export const displayFavorites = favoriteMovies => ({
+  type: 'DISPLAY_FAVORITES',
+  favoriteMovies
+});

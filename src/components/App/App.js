@@ -14,6 +14,7 @@ import {
 } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
+import Favorites from '../../Favorites/Favorites';
 
 class App extends Component {
   componentDidMount = async () => {
@@ -36,7 +37,7 @@ class App extends Component {
   render() {
     // deleteFavorite(1,100);
     // favorite(1, 559969, "El Camino: A Breaking Bad Movie", "/ePXuKdXZuJx8hHMNr2yM4jY2L7Z.jpg", "2019-10-11", 7.1, "In the wake of his dramatic escape from captivity, Jesse Pinkman must come to terms with his past in order to forge some kind of future.")
-    
+
     return (
       <div className='app'>
         <Header />
@@ -67,6 +68,7 @@ class App extends Component {
             />
           );
         })}
+        <Route exact path='/favorites' component={Favorites} />
       </div>
     );
   }
