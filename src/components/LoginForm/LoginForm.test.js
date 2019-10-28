@@ -29,15 +29,4 @@ describe('LoginForm', () => {
       expect(mappedProps).toEqual(expected);
     });
   });
-
-  describe('mapDispatchToProps', () => {
-    it('calls dispatch with a login action when login is called', () => {
-      const mockDispatch = jest.fn();
-      const actionToDispatch = login('jujube@email.com', 'password');
-      const mappedProps = mapDispatchToProps(mockDispatch);
-      mappedProps.login('jujube@email.com', 'password');
-
-      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
-    });
-  });
 });
