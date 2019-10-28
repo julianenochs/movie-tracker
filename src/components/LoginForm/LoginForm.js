@@ -11,7 +11,7 @@ import {
 } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
-
+import Bounce from 'react-reveal/Bounce'
 class LoginForm extends Component {
   handleChange = e => {
     const { updateUserInfo, tempUser } = this.props;
@@ -71,6 +71,7 @@ class LoginForm extends Component {
       <section className='form'>
         {this.handleRedirect()}
         {this.props.error !== '' && <h4 className='error__message'>{this.props.error}</h4>}
+        <Bounce>
         <form>
           <input
             name='email'
@@ -91,6 +92,7 @@ class LoginForm extends Component {
           )}
           {(!email || !password) && <button disabled className='login__button'>Login</button>}
         </form>
+        </Bounce>
       </section>
     );
   }
