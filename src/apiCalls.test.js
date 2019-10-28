@@ -34,7 +34,6 @@ describe('fetchPopularMovies', () => {
 
   it('should be called with the correct url', () => {
     fetchPopularMovies()
-    .catch(error => console.log(error));
     expect(window.fetch).toHaveBeenCalledWith('https://api.themoviedb.org/3/movie/popular?api_key=5be60afe8a002cff163376db69b0add0&language=en-US&page=1');
   });
 
@@ -153,7 +152,7 @@ describe('favorite', () => {
     expect(window.fetch).toHaveBeenCalledWith(url, body);
   });
 
-  it('should return the user that was registered', () => {
+  it('should return the movie that was favorited', () => {
     const result = favorite(195, 449924, 'Ip Man 4: The Finale', 'mAWBfTDAmfpvQGMVFuzuVl49N1P.jpg', '2019-10-18', 5.7, 'overview');
     expect(result).resolves.toEqual(expected);
   });
