@@ -24,25 +24,18 @@ export class MovieCard extends Component {
     const userId = this.props.user.userId;
     const curMovieId = Number(e.target.closest('section').id);
     const movie = this.props.movies.find(movie => movie.id === curMovieId);
-    const { id, title, poster_path, release_date, vote_average } = movie;
-    const favorited = await favorite(
-      userId,
-      id,
-      title,
-      poster_path,
-      release_date,
-      vote_average,
-      'overview'
-    ).then(fav => fav);
-    this.props.updateFavorites({
-      favorites: [...this.props.favorites, favorited]
-    });
-  };
+    const {id, title, poster_path, release_date, vote_average} = movie;
+    const favorited = await favorite(userId, id, title, poster_path, release_date, vote_average, 'overview')
+      .then(fav => fav);
+    if(!this.props.favorites.find(favorite => favorite.title === title)) {
+      this.props.updateFavorites({favorites: [...this.props.favorites, favorited] });
+    }
+  }
 
-  selectMovie = e => {
-    const id = e.target.closest('section').id;
-    console.log(id);
-  };
+  // selectMovie = e => {
+  //   const id = e.target.closest('section').id;
+  // }
+
 
   render() {
     const {

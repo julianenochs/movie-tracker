@@ -29,7 +29,6 @@ export class App extends Component {
 
   selectMovieToDisplay = id => {
     let selectedMovie = this.props.movies.find(movie => movie.id === id);
-    console.log('selectedMovie', selectedMovie);
     this.props.selectMovie(selectedMovie);
     return selectedMovie;
   };
