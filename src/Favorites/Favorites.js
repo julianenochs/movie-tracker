@@ -1,32 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../components/MovieCard/MovieCard';
 
-const Favorites = props => {
-  console.log('favorites props', props.movies);
-  const allFavoritedMovies = props.movies.map((movie, i) => {
-    if (movie.isFavorite === true) {
+class Favorites extends Component {
+  
+  returnFavorites = () => {
+    return this.props.favorites.map((fav, i) => {
       return (
-        <MovieCard
-          title={movie.title}
-          poster={movie.poster_path}
-          overview={movie.overview}
-          movieID={movie.id}
+        <MovieCard 
+          title={fav.title}
+          poster={fav.poster_path}
+          overview={fav.overview}
+          movieID={fav.movie_id}
           key={i}
         />
       );
-    }
-  });
+    });
+  }
 
-  return (
-    <section>
-      <h1>{allFavoritedMovies}</h1>
-    </section>
-  );
-};
-
+  render() {
+    return (
+      <section>
+        {this.returnFavorites()}
+      </section>
+    );
+  }
+}
 const mapStateToProps = state => ({
-  movies: state.movies
+  favorites: state.favorites,
+  movies: state.movies,
 });
 
 export default connect(
