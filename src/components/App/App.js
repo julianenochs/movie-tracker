@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import Favorites from '../../Favorites/Favorites';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount = async () => {
     fetchPopularMovies()
       .then(movies => {
