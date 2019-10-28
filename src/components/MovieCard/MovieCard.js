@@ -7,21 +7,20 @@ import { NavLink } from 'react-router-dom';
 import { deleteFavorite, favorite, getFavorites } from '../../apiCalls';
 import { updateFavorites } from '../../actions/index';
 
-class MovieCard extends Component {
-
+export class MovieCard extends Component {
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
     const update = await this.props.updateFavorites(favorites);
-  }
+  };
 
-  handleUnfavorite = async (e) => {
+  handleUnfavorite = async e => {
     const userId = this.props.user.userId;
     const movieId = Number(e.target.closest('section').id);
     const deleter = await deleteFavorite(userId, movieId);
     const test = await this.refreshFavorites();
-  }
+  };
 
-  handleFavorite = async (e) => {
+  handleFavorite = async e => {
     const userId = this.props.user.userId;
     const curMovieId = Number(e.target.closest('section').id);
     const movie = this.props.movies.find(movie => movie.id === curMovieId);
@@ -33,23 +32,43 @@ class MovieCard extends Component {
     }
   }
 
-  selectMovie = e => {
-    const id = e.target.closest('section').id;
-  }
+  // selectMovie = e => {
+  //   const id = e.target.closest('section').id;
+  // }
+
 
   render() {
-    const { title, poster, overview, movieID, isLoggedIn, favorites } = this.props;
+    const {
+      title,
+      poster,
+      overview,
+      movieID,
+      isLoggedIn,
+      favorites
+    } = this.props;
     const isFavorite = favorites.find(fav => fav.title === title);
     const starUrl = isFavorite ? starFavorited : star;
-    const handleFavoriting = isFavorite ? this.handleUnfavorite : this.handleFavorite;
+    const handleFavoriting = isFavorite
+      ? this.handleUnfavorite
+      : this.handleFavorite;
     return (
       <section className='movie__card' id={movieID}>
         <div>
           <h1 className='movie__title'>{title}</h1>
-          {isLoggedIn && <img src={starUrl} alt='favorite-button' onClick={handleFavoriting} />}
+          {isLoggedIn && (
+            <img
+              src={starUrl}
+              alt='favorite-button'
+              onClick={handleFavoriting}
+            />
+          )}
           {!isLoggedIn && (
             <NavLink to='/login'>
-              <img src={star} className='favorite__star' alt='favorite-button' />
+              <img
+                src={star}
+                className='favorite__star'
+                alt='favorite-button'
+              />
             </NavLink>
           )}
         </div>
@@ -58,23 +77,23 @@ class MovieCard extends Component {
           alt='movie poster'
         />
         <p className='overview'>{overview}</p>
-        <NavLink to ={`/movies/${movieID}`}>
+        <NavLink to={`/movies/${movieID}`}>
           <div className='view-movie__div'>View Movie</div>
         </NavLink>
       </section>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   isLoggedIn: state.isLoggedIn,
   favorites: state.favorites,
   user: state.user,
-  movies: state.movies,
+  movies: state.movies
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateFavorites: favorites => dispatch( updateFavorites(favorites) ),
+  updateFavorites: favorites => dispatch(updateFavorites(favorites))
 });
 
 export default connect(

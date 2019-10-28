@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
+import { Header, mapStateToProps, mapDispatchToProps } from './Header';
 
-describe('MovieCard', () => {
+describe('Header', () => {
   let wrapper;
   const mockMovies = [
     {
@@ -23,19 +23,29 @@ describe('MovieCard', () => {
       isFavorite: false
     }
   ];
+
+  const mockUpdateIsLoggedIn = jest.fn();
+  const mockUpdateUser = jest.fn();
+  const mockUpdateFavorites = jest.fn();
+  const mockResetMovies = jest.fn();
+  const mockDisplayFavorites = jest.fn();
+
   beforeEach(() => {
     wrapper = shallow(
-      <MovieCard
-        isLoggedIn={false}
-        favorites={[]}
-        user={'Peerat'}
+      <Header
+        user={'Peerat Test'}
+        isLoggedIn={true}
         movies={mockMovies}
-        updateFavorites={jest.fn()}
+        updateIsLoggedIn={mockUpdateIsLoggedIn}
+        updateUser={mockUpdateUser}
+        updateFavorites={mockUpdateFavorites}
+        resetMovies={mockResetMovies}
+        displayFavorites={mockDisplayFavorites}
       />
     );
   });
 
-  it('should match the MovieCard Snapshot', () => {
+  it('should match the LoginForm Snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });
