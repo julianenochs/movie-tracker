@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './MovieInfo.scss';
+import { NavLink } from 'react-router-dom';
 
 const MovieInfo = props => {
   console.log('props', props);
@@ -12,9 +13,12 @@ const MovieInfo = props => {
         src={`https://image.tmdb.org/t/p/original/${props.selectMovie.poster_path}`}
         alt='movie poster'
       />
-      <p className='overview'>{props.selectMovie.overview}</p>
+      <p className='overview__info'>{props.selectMovie.overview}</p>
       <p>Release Date: {props.selectMovie.release_date}</p>
       <p>Popularity Voting Average: {props.selectMovie.vote_average}</p>
+      <NavLink to='/' className='movies__button'>
+        Back To Movies
+      </NavLink>
     </section>
   );
 };

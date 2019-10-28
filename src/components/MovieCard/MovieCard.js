@@ -58,8 +58,8 @@ class MovieCard extends Component {
           alt='movie poster'
         />
         <p className='overview'>{overview}</p>
-        <NavLink to ={`/movies/${movieID}`}>
-          <div className='view-movie__div'>View Movie</div>
+        <NavLink to={`/movies/${movieID}`} className='view-movie__div'>
+          <div >View Movie</div>
         </NavLink>
       </section>
     );

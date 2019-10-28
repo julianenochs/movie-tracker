@@ -6,7 +6,9 @@ $container-color: #3C7A89;
   display: flex;
   height: 80vh;
   justify-content: center;
-  overflow: scroll;
+  overflow: overlay;
   overflow-y: hidden;
+  overflow-x: auto;
   width: 85%;
+  white-space: pre-wrap;
 }
