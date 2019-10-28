@@ -4,9 +4,11 @@ $container-color: #3C7A89;
   align-items: center;
   background-color: $container-color;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   height: 80vh;
   justify-content: center;
   overflow: scroll;
-  overflow-y: hidden;
+  overflow-x: hidden;
   width: 85%;
 }
