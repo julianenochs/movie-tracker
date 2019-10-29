@@ -46,7 +46,7 @@ class MovieCard extends Component {
       <section className='movie__card' id={movieID}>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster}`}
-          alt='movie poster'
+          alt={`movie poster for ${title}`}
           />
         <p className='overview'>{overview}</p>
         <NavLink to={`/movies/${movieID}`} className='view-movie__div'>
