@@ -6,6 +6,12 @@ The intended purposes of this project were to learn React.js, React Router and i
 
 
 ![newflix](./planning/newflix-view.gif)
+
 ### How to Run NEWFLIX
 Run `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+### Authors
+[Brady Bridges](github.com/bradybridges)
+[Julian Enochs-Brown](github.com/julianenochs)
+[Peerat Sukcharoenyingyong](github.com/peeratmac)
