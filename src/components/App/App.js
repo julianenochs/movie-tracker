@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { fetchPopularMovies } from '../../apiCalls';
+import { fetchPopularMovies, getFavorites } from '../../apiCalls';
 import LoginForm from '../LoginForm/LoginForm';
 import MoviesContainer from '../../containers/MoviesContainer/MoviesContainer';
 import RegisterForm from '../../containers/RegisterForm/RegisterForm';
@@ -10,7 +10,9 @@ import {
   addMovies,
   updateError,
   updateFavorites,
-  selectMovie
+  selectMovie,
+  updateIsLoggedIn,
+  updateUser,
 } from '../../actions/index';
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
@@ -22,6 +24,7 @@ export class App extends Component {
     fetchPopularMovies()
       .then(movies => {
         this.props.addMovies(movies);
+        this.checkForExistingUser();
       })
       .catch(error => {
         this.props.updateError(error);
@@ -33,6 +36,30 @@ export class App extends Component {
     this.props.selectMovie(selectedMovie);
     return selectedMovie;
   };
+
+  checkForExistingUser = () => {
+    const localUser = JSON.parse(localStorage.getItem('user'));
+    console.log(localUser, 'hello');
+    if(localUser) {
+      const { email, userId } = localUser;
+      this.props.updateIsLoggedIn(true);
+      this.props.updateUser(email, userId);
+      this.loadFavorites();
+    }
+  };
+
+  loadFavorites = async () => {
+    const favoriteMovies = await getFavorites(this.props.user.userId);
+    favoriteMovies.favorites.forEach(movie => {
+      let updateMovie = this.props.movies.find(
+        mov => mov.title === movie.title
+      );
+      if (updateMovie) {
+        updateMovie.isFavorite = true;
+      }
+    });
+    this.props.updateFavorites(favoriteMovies);
+  }
 
   render() {
     return (
@@ -48,7 +75,7 @@ export class App extends Component {
             />
           )}
         />
-        <Route exact path='/login' component={LoginForm} />
+        <Route exact path='/login' render={() => <LoginForm loadFavorites={this.loadFavorites} />} />
         <Route exact path='/register' component={RegisterForm} />
         {this.props.movies.map((movie) => {
           return (
@@ -76,7 +103,10 @@ const mapDispatchToProps = dispatch => ({
   addMovies: movies => dispatch(addMovies(movies)),
   updateError: error => dispatch(updateError(error)),
   updateFavorites: favorites => dispatch(updateFavorites(favorites)),
-  selectMovie: movie => dispatch(selectMovie(movie))
+  selectMovie: movie => dispatch(selectMovie(movie)),
+  updateIsLoggedIn: bool => dispatch( updateIsLoggedIn(bool) ),
+  updateUser: (email, id) => dispatch( updateUser(email, id) ),
+  getFavorites: id => dispatch( getFavorites(id) ),
 });
 
 const mapStateToProps = state => ({
