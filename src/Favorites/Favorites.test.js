@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { MovieCard, mapStateToProps, mapDispatchToProps } from './MovieCard';
+import { Favorites, mapStateToProps, mapDispatchToProps } from './Favorites';
 
-describe('MovieCard', () => {
+describe('Favorites', () => {
   let wrapper;
   const mockMovies = [
     {
@@ -23,19 +23,12 @@ describe('MovieCard', () => {
       isFavorite: false
     }
   ];
+
   beforeEach(() => {
-    wrapper = shallow(
-      <MovieCard
-        isLoggedIn={false}
-        favorites={[]}
-        user={'Peerat'}
-        movies={mockMovies}
-        updateFavorites={jest.fn()}
-      />
-    );
+    wrapper = shallow(<Favorites favorites={[]} movies={mockMovies} />);
   });
 
-  it('should match the MovieCard Snapshot', () => {
+  it('should match the Favorites Snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   });
 });

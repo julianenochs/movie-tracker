@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../components/MovieCard/MovieCard';
-import './Favorites.scss'
-class Favorites extends Component {
+import './Favorites.scss';
+import PropTypes from 'prop-types';
+export class Favorites extends Component {
   returnFavorites = () => {
     return this.props.favorites.map((fav, i) => {
       return (
-        <MovieCard 
+        <MovieCard
           title={fav.title}
           poster={fav.poster_path}
           overview={fav.overview}
@@ -15,7 +16,7 @@ class Favorites extends Component {
         />
       );
     });
-  }
+  };
 
   render() {
     return (
@@ -27,10 +28,15 @@ class Favorites extends Component {
 }
 const mapStateToProps = state => ({
   favorites: state.favorites,
-  movies: state.movies,
+  movies: state.movies
 });
 
 export default connect(
   mapStateToProps,
   null
 )(Favorites);
+
+Favorites.propTypes = {
+  favorites: PropTypes.array,
+  movies: PropTypes.array
+};

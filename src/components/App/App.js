@@ -15,8 +15,9 @@ import {
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import Favorites from '../../Favorites/Favorites';
+import PropTypes from 'prop-types';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount = async () => {
     fetchPopularMovies()
       .then(movies => {
@@ -29,7 +30,6 @@ class App extends Component {
 
   selectMovieToDisplay = id => {
     let selectedMovie = this.props.movies.find(movie => movie.id === id);
-    console.log('selectedMovie', selectedMovie);
     this.props.selectMovie(selectedMovie);
     return selectedMovie;
   };
@@ -92,3 +92,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+App.propTypes = {
+  user: PropTypes.object,
+  error: PropTypes.string,
+  isLoggedIn: PropTypes.bool,
+  movies: PropTypes.array,
+  favorites: PropTypes.array,
+  selectMovieToDisplay: PropTypes.object,
+  selectMovie: PropTypes.func
+};
