@@ -12,9 +12,9 @@ import {
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
 import Bounce from 'react-reveal/Bounce';
+import PropTypes from 'prop-types';
 
 export class LoginForm extends Component {
-
   handleChange = e => {
     const { updateUserInfo, tempUser } = this.props;
     const inputName = e.target.name;
@@ -72,31 +72,38 @@ export class LoginForm extends Component {
     return (
       <section className='form'>
         {this.handleRedirect()}
-        {this.props.error !== '' && <h4 className='error__message'>{this.props.error}</h4>}
+        {this.props.error !== '' && (
+          <h4 className='error__message'>{this.props.error}</h4>
+        )}
         <Bounce>
-
-        <form>
-          <input
-            name='email'
-            type='text'
-            value={this.props.tempUser.email}
-            placeholder='Your email here'
-            onChange={this.handleChange}
-            className='login__input'
-          />
-          <input
-            name='password'
-            type='password'
-            value={this.props.tempUser.password}
-            placeholder='Password'
-            onChange={this.handleChange}
-            className='login__input'
-          />
-          {email && password && (
-            <button onClick={this.handleLogin} className='login__button'>Login</button>
-          )}
-          {(!email || !password) && <button disabled className='login__button'>Login</button>}
-        </form>
+          <form>
+            <input
+              name='email'
+              type='text'
+              value={this.props.tempUser.email}
+              placeholder='Your email here'
+              onChange={this.handleChange}
+              className='login__input'
+            />
+            <input
+              name='password'
+              type='password'
+              value={this.props.tempUser.password}
+              placeholder='Password'
+              onChange={this.handleChange}
+              className='login__input'
+            />
+            {email && password && (
+              <button onClick={this.handleLogin} className='login__button'>
+                Login
+              </button>
+            )}
+            {(!email || !password) && (
+              <button disabled className='login__button'>
+                Login
+              </button>
+            )}
+          </form>
         </Bounce>
       </section>
     );
@@ -125,3 +132,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
+
+LoginForm.propTypes = {
+  user: PropTypes.object,
+  tempUser: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
+  error: PropTypes.string,
+  movies: PropTypes.array
+};
