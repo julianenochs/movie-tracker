@@ -10,7 +10,7 @@ import {
 } from '../actions';
 import { connect } from 'react-redux';
 
-class Header extends Component {
+export class Header extends Component {
   handleSignout = () => {
     this.props.updateIsLoggedIn(false);
     this.props.updateUser('');
