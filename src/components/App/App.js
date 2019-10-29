@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import Favorites from '../../Favorites/Favorites';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   componentDidMount = async () => {
@@ -49,9 +50,10 @@ export class App extends Component {
         />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
-        {this.props.movies.map(movie => {
+        {this.props.movies.map((movie) => {
           return (
             <Route
+              key={movie.id}
               exact
               path={`/movies/${movie.id}`}
               render={props => (
@@ -91,3 +93,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+App.propTypes = {
+  user: PropTypes.object,
+  error: PropTypes.string,
+  isLoggedIn: PropTypes.bool,
+  movies: PropTypes.array,
+  favorites: PropTypes.array,
+  selectMovieToDisplay: PropTypes.object,
+  selectMovie: PropTypes.func
+};

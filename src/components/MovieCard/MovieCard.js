@@ -6,19 +6,19 @@ import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { deleteFavorite, favorite, getFavorites } from '../../apiCalls';
 import { updateFavorites } from '../../actions/index';
+import PropTypes from 'prop-types';
 
 export class MovieCard extends Component {
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
-    const update = await this.props.updateFavorites(favorites);
+    this.props.updateFavorites(favorites);
   };
 
   handleUnfavorite = async e => {
     const userId = this.props.user.userId;
     const movieId = Number(e.target.closest('section').id);
-    const deleter = await deleteFavorite(userId, movieId);
+    await deleteFavorite(userId, movieId);
     this.refreshFavorites();
-    
   };
 
   handleFavorite = async e => {
@@ -32,8 +32,7 @@ export class MovieCard extends Component {
       .then(fav => fav);
       this.props.updateFavorites({favorites: [...this.props.favorites, favorited] });
     }
-  }
-
+  };
 
   render() {
     const {
@@ -54,20 +53,30 @@ export class MovieCard extends Component {
         <img
           src={`https://image.tmdb.org/t/p/original/${poster}`}
           alt='movie poster'
-          />
+        />
         <p className='overview'>{overview}</p>
         <NavLink to={`/movies/${movieID}`} className='view-movie__div'>
-          <div >View Movie</div>
-
+          <div>View Movie</div>
         </NavLink>
-          <div>
-            {isLoggedIn && <img className='favorite__star' src={starUrl} alt='favorite-button' onClick={handleFavoriting} />}
-            {!isLoggedIn && (
-              <NavLink to='/login'>
-                <img src={star} className='favorite__star' alt='favorite-button' />
-              </NavLink>
-            )}
-          </div>
+        <div>
+          {isLoggedIn && (
+            <img
+              className='favorite__star'
+              src={starUrl}
+              alt='favorite-button'
+              onClick={handleFavoriting}
+            />
+          )}
+          {!isLoggedIn && (
+            <NavLink to='/login'>
+              <img
+                src={star}
+                className='favorite__star'
+                alt='favorite-button'
+              />
+            </NavLink>
+          )}
+        </div>
       </section>
     );
   }
@@ -88,3 +97,10 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(MovieCard);
+
+MovieCard.propTypes = {
+  isLoggedIn: PropTypes.bool,
+  favorites: PropTypes.array,
+  user: PropTypes.object,
+  movies: PropTypes.array
+};
