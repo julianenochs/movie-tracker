@@ -12,7 +12,7 @@ Run `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Authors
-Brady Bridges<www.github.com/bradybridges>
+[Brady Bridges] (www.github.com/bradybridges)
 
 Julian Enochs-Brown(www.github.com/julianenochs)
 
