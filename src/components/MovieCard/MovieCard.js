@@ -11,14 +11,14 @@ import PropTypes from 'prop-types';
 export class MovieCard extends Component {
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
-    const update = await this.props.updateFavorites(favorites);
+    this.props.updateFavorites(favorites);
   };
 
   handleUnfavorite = async e => {
     const userId = this.props.user.userId;
     const movieId = Number(e.target.closest('section').id);
-    const deleter = await deleteFavorite(userId, movieId);
-    const test = await this.refreshFavorites();
+    deleteFavorite(userId, movieId);
+    this.refreshFavorites();
   };
 
   handleFavorite = async e => {

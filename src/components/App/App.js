@@ -50,9 +50,10 @@ export class App extends Component {
         />
         <Route exact path='/login' component={LoginForm} />
         <Route exact path='/register' component={RegisterForm} />
-        {this.props.movies.map(movie => {
+        {this.props.movies.map((movie) => {
           return (
             <Route
+              key={movie.id}
               exact
               path={`/movies/${movie.id}`}
               render={props => (
