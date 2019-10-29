@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './MovieInfo.scss';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const MovieInfo = props => {
   console.log('props', props);
@@ -31,3 +32,7 @@ export default connect(
   mapStateToProps,
   null
 )(MovieInfo);
+
+MovieInfo.propTypes = {
+  selectMovie: PropTypes.func
+};

@@ -15,6 +15,7 @@ import {
 import { connect } from 'react-redux';
 import Header from '../../Header/header';
 import Favorites from '../../Favorites/Favorites';
+import PropTypes from 'prop-types';
 
 export class App extends Component {
   componentDidMount = async () => {
@@ -91,3 +92,13 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(App);
+
+App.propTypes = {
+  user: PropTypes.object,
+  error: PropTypes.string,
+  isLoggedIn: PropTypes.bool,
+  movies: PropTypes.array,
+  favorites: PropTypes.array,
+  selectMovieToDisplay: PropTypes.object,
+  selectMovie: PropTypes.func
+};
