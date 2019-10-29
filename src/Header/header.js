@@ -9,8 +9,9 @@ import {
   displayFavorites
 } from '../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-class Header extends Component {
+export class Header extends Component {
   handleSignout = () => {
     this.props.updateIsLoggedIn(false);
     this.props.updateUser('');
@@ -68,3 +69,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Header);
+
+Header.propTypes = {
+  user: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
+  movies: PropTypes.array
+};
