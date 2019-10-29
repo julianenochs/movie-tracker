@@ -2,6 +2,8 @@ $button-color: #004263;
 $button-shadow: #003149;
 
 .form {
+  display: flex;
+  flex-direction: column;
   width: 65%;
 }
 
@@ -12,10 +14,11 @@ form {
 }
 
 .login__input {
+  padding-left: 10px;
   height: 40px;
   font-size: 1em;
-  margin: 8%;
-  width: 28%;
+  margin: 20px;
+  width: 300px;
 }
 
 .login__button {
