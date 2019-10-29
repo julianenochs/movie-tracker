@@ -11,34 +11,26 @@ import PropTypes from 'prop-types';
 export class MovieCard extends Component {
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
-    const update = await this.props.updateFavorites(favorites);
+    this.props.updateFavorites(favorites);
   };
 
   handleUnfavorite = async e => {
     const userId = this.props.user.userId;
     const movieId = Number(e.target.closest('section').id);
-    const deleter = await deleteFavorite(userId, movieId);
-    const test = await this.refreshFavorites();
+    await deleteFavorite(userId, movieId);
+    this.refreshFavorites();
   };
 
   handleFavorite = async e => {
     const userId = this.props.user.userId;
     const curMovieId = Number(e.target.closest('section').id);
     const movie = this.props.movies.find(movie => movie.id === curMovieId);
-    const { id, title, poster_path, release_date, vote_average } = movie;
-    const favorited = await favorite(
-      userId,
-      id,
-      title,
-      poster_path,
-      release_date,
-      vote_average,
-      'overview'
-    ).then(fav => fav);
-    if (!this.props.favorites.find(favorite => favorite.title === title)) {
-      this.props.updateFavorites({
-        favorites: [...this.props.favorites, favorited]
-      });
+    const {id, title, poster_path, release_date, vote_average, overview} = movie;
+    
+    if(!this.props.favorites.find(favorite => favorite.title === title)) {
+      const favorited = await favorite(userId, id, title, poster_path, release_date, vote_average, overview)
+      .then(fav => fav);
+      this.props.updateFavorites({favorites: [...this.props.favorites, favorited] });
     }
   };
 

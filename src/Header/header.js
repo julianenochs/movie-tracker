@@ -17,6 +17,7 @@ export class Header extends Component {
     this.props.updateUser('');
     this.props.updateFavorites({ favorites: [] });
     this.props.resetMovies();
+    localStorage.removeItem('user');
   };
 
   render() {
