@@ -7,6 +7,10 @@ The intended purposes of this project were to learn React.js, React Router and i
 ![newflix](./planning/emailnewflix.gif)
 ![newflix](./planning/newflix-view.gif)
 
+## Project Management
+This was a 3 person group project. In order to most effectively organize the tasks we had to accomplish we utilized GitHub projects.
+![newflix](./planning/GHprojects.png)
+
 ### How to Run NEWFLIX
 Run `npm start`
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
