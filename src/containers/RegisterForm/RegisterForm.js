@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import * as EmailValidator from 'email-validator';
 import { 
   updateUserInfo, 
   updateUser, 
@@ -34,11 +35,17 @@ class RegisterForm extends Component {
   handleRegister = e => {
     e.preventDefault();
     const { name, email, password } = this.props.tempUser;
+    const isValidEmail = EmailValidator.validate(email);
     register(name, email, password)
     .then(data => {
-      this.props.updateIsLoggedIn(true);
-      this.props.updateUser(email, data.id);
-      this.props.resetError();
+      if( isValidEmail ) {
+        this.props.updateIsLoggedIn(true);
+        this.props.updateUser(email, data.id);
+        this.props.resetError();
+      } else {
+        this.props.updateError({message: 'Please enter a valid email' });
+      }
+      
     })
     .catch(error => {
       this.props.updateError(error);
@@ -53,6 +60,8 @@ class RegisterForm extends Component {
   }
 
   render() {
+    const { name, email, password } = this.props.tempUser;
+    const isFormComplete = name !== '' && email !== '' && password !== '';
     return (
       <Bounce>
       <form className='form'>
@@ -79,7 +88,8 @@ class RegisterForm extends Component {
           placeholder='Password'
           onChange={this.handleChange}
         />
-          <button onClick={this.handleRegister} className='register__button'>Register</button>
+          {isFormComplete && <button onClick={this.handleRegister} className='register__button'>Register</button>}
+          {!isFormComplete && <button disabled className='register__button'>Register</button>}
       </form>
       </Bounce>
     );
