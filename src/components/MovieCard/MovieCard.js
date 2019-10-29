@@ -50,7 +50,7 @@ class MovieCard extends Component {
           />
         <p className='overview'>{overview}</p>
         <NavLink to={`/movies/${movieID}`} className='view-movie__div'>
-          <div >View Movie</div>
+          <div>View Movie</div>
         </NavLink>
           <div>
             {isLoggedIn && <img className='favorite__star' src={starUrl} alt='favorite-button' onClick={handleFavoriting} />}
