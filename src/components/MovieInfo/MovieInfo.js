@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import './MovieInfo.scss';
 import { NavLink } from 'react-router-dom';
 
-const MovieInfo = props => {
+export const MovieInfo = props => {
   console.log('props', props);
   const selectMovie = props.selectMovieToDisplay(props.id);
   return (
