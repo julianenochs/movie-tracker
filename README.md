@@ -4,7 +4,7 @@ NEWFLIX is a web application where users can navigate the moviesDB API and see t
 ## Learning Objectives
 The intended purposes of this project were to learn React.js, React Router and integrate Redux. We have a robust testing suite using Jest & Enzyme that aims for maximum coverage. 
 
-
+![newflix](./planning/emailnewflix.gif)
 ![newflix](./planning/newflix-view.gif)
 
 ### How to Run NEWFLIX
