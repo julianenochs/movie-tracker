@@ -11,7 +11,6 @@ class MovieCard extends Component {
 
   refreshFavorites = async () => {
     const favorites = await getFavorites(this.props.user.userId);
-
     const update = await this.props.updateFavorites(favorites);
   }
 
