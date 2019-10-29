@@ -55,7 +55,7 @@ class RegisterForm extends Component {
   render() {
     return (
       <Bounce>
-      <form className='form'>
+      <form className='register__form'>
         {this.props.error !== '' && <h4 className='error__email'>{this.props.error}</h4>}
         {this.props.isLoggedIn && this.handleRedirect()}
         <input
@@ -64,6 +64,7 @@ class RegisterForm extends Component {
           value={this.props.tempUser.name}
           placeholder='Enter Name'
           onChange={this.handleChange}
+          className='register__input'
         />
         <input
           name='email'
@@ -71,6 +72,7 @@ class RegisterForm extends Component {
           value={this.props.tempUser.email}
           placeholder='Your email here'
           onChange={this.handleChange}
+          className='register__input'
         />
         <input
           name='password'
@@ -78,6 +80,7 @@ class RegisterForm extends Component {
           value={this.props.tempUser.password}
           placeholder='Password'
           onChange={this.handleChange}
+          className='register__input'
         />
           <button onClick={this.handleRegister} className='register__button'>Register</button>
       </form>
