@@ -13,5 +13,4 @@ describe('Movie Card', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should ')
 })

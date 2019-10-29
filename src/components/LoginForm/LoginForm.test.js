@@ -11,8 +11,8 @@ describe('LoginForm', () => {
 
   });
 
-  it('should call handleLogin when the button is clicked', () => {
-    
+  it.skip('should call handleLogin when the button is clicked', () => {
+
   });
 
   describe('mapStateToProps', () => {
