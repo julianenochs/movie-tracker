@@ -2,12 +2,13 @@ $button-color: #004263;
 $button-shadow: #003149;
 
 img {
-  width: 200px;
+  width: 220px;
 }
 
 .movie__card {
   align-items: center;
-  background-color: rgba(0, 31, 46, 0.78);
+  background-color: rgba(0, 31, 46, 0.95);
+  border-radius: 5px;
   color: white;
   display: flex;
   flex-direction: column;
@@ -15,14 +16,7 @@ img {
   margin-block-start: 5px;
   height: 70vh;
   padding: 15px;
-  width: 15%;
-}
-
-.movie__title {
-  font-family: 'Staatliches', cursive;
-  font-size: 1.7em;
-  height: 8vh;
-  letter-spacing: 3px;
+  width: 20%;
 }
 
 .overview {
@@ -35,18 +29,20 @@ img {
 
 .favorite__star {
   height: 4vh;
+  margin-top: 35px;
   width: 20%;
 }
 
 .view-movie__div {
   background-color: $button-color;
   border: none;
+  border-radius: 5px;
   box-shadow: 4px 4px $button-shadow;
   color: white;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1em;
-  height: 40px;
+  font-size: 1.2em;
+  height: 30px;
   letter-spacing: 5px;
   text-decoration: none;
-  width: 120px;
+  width: 150px;
 }

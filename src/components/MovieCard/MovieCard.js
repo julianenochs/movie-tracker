@@ -49,34 +49,23 @@ export class MovieCard extends Component {
       : this.handleFavorite;
     return (
       <section className='movie__card' id={movieID}>
-        <div>
-          <h1 className='movie__title'>{title}</h1>
-          {isLoggedIn && (
-            <img
-              src={starUrl}
-              alt='favorite-button'
-              onClick={handleFavoriting}
-            />
-          )}
-          {!isLoggedIn && (
-            <NavLink to='/login'>
-              <img
-                src={star}
-                className='favorite__star'
-                alt='favorite-button'
-              />
-            </NavLink>
-          )}
-        </div>
         <img
           src={`https://image.tmdb.org/t/p/original/${poster}`}
           alt='movie poster'
-        />
+          />
         <p className='overview'>{overview}</p>
         <NavLink to={`/movies/${movieID}`} className='view-movie__div'>
           <div >View Movie</div>
 
         </NavLink>
+          <div>
+            {isLoggedIn && <img className='favorite__star' src={starUrl} alt='favorite-button' onClick={handleFavoriting} />}
+            {!isLoggedIn && (
+              <NavLink to='/login'>
+                <img src={star} className='favorite__star' alt='favorite-button' />
+              </NavLink>
+            )}
+          </div>
       </section>
     );
   }
