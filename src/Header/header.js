@@ -12,6 +12,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 export class Header extends Component {
+  
   handleSignout = () => {
     this.props.updateIsLoggedIn(false);
     this.props.updateUser('');

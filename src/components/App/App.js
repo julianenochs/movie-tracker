@@ -39,7 +39,6 @@ export class App extends Component {
 
   checkForExistingUser = () => {
     const localUser = JSON.parse(localStorage.getItem('user'));
-    console.log(localUser, 'hello');
     if(localUser) {
       const { email, userId } = localUser;
       this.props.updateIsLoggedIn(true);

@@ -5,5 +5,5 @@ export const tempUser = (state = { name: '', email: '', password:''}, action) =>
       return { name, email, password };
     default:
       return state;
-  };
+  }
 };
