@@ -53,8 +53,6 @@ describe('LoginForm', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should call handleLogin when the button is clicked', () => {});
-
   describe('mapStateToProps', () => {
     it('should return an object with a user object', () => {
       const mockState = {
@@ -77,4 +75,17 @@ describe('LoginForm', () => {
       expect(mappedProps).toEqual(expected);
     });
   });
+
+
+  describe('mapDispatchToProps', () => {
+    it.skip('calls dispatch with a login action when login is called', () => {
+      const mockDispatch = jest.fn();
+      const actionToDispatch = login('jujube@email.com', 'password');
+      const mappedProps = mapDispatchToProps(mockDispatch);
+      mappedProps.login('jujube@email.com', 'password');
+
+      expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch);
+    });
+  });
+});
 });
