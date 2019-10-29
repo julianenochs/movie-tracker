@@ -5,6 +5,6 @@ export const error = (state = '', action) => {
     case 'RESET_ERROR':
       return '';
     default:
-      return '';
+      return state;
   }
 };

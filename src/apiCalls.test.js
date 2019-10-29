@@ -199,14 +199,41 @@ describe('getFavorites', () => {
     const result = getFavorites(1);
     expect(result).resolves.toEqual(expected);
   });
+
+  it('should return an error', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({ok: false});
+    });
+    expect(getFavorites(1)).rejects.toEqual(Error('Failed to get favorites'));
+  });
+
+  it('should return an error if the promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('Failed to fetch'));
+    });
+    expect(getFavorites(1)).rejects.toEqual(Error('Failed to fetch'));
+  });
 });
 
 describe('deleteFavorite', () => {
-  beforeEach(() => {
-    window.fetch = jest.fn();
-  });
+  
   it('should be called with the correct url', () => {
-    deleteFavorite(1, 100);
+    window.fetch = jest.fn();
+    const hello = deleteFavorite(1, 100);
     expect(window.fetch).toHaveBeenCalledWith('http://localhost:3001/api/v1/users/1/moviefavorites/100', {"method": "DELETE"});
+  });
+
+  it('should return an error', async () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.resolve({ok: false});
+    });
+      await expect(deleteFavorite(1, 100)).rejects.toEqual(Error('Failed to delete favorite'));
+  });
+
+  it('should return an error if promise rejects', () => {
+    window.fetch = jest.fn().mockImplementation(() => {
+      return Promise.reject(Error('Failed to fetch'));
+    });
+    expect(deleteFavorite(1, 100)).rejects.toEqual(Error('Failed to fetch'));
   });
 });

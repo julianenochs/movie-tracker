@@ -86,15 +86,23 @@ export const getFavorites = async userId => {
   const response = await fetch(
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites`
   );
+  if(!response.ok) {
+    throw Error('Failed to get favorites');
+  }
   const favorites = await response.json();
   return favorites;
 };
 
 export const deleteFavorite = async (userId, favoriteId) => {
-  await fetch(
+  const response = await fetch(
     `http://localhost:3001/api/v1/users/${userId}/moviefavorites/${favoriteId}`,
     {
       method: 'DELETE'
     }
   );
+  if(!response.ok) {
+    console.log('hit block q24q2rwru89wur8w9');
+    throw Error('Failed to delete favorite');
+  }
+  return response;
 };

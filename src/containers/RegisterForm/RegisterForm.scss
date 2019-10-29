@@ -2,6 +2,8 @@ $button-color: #004263;
 $button-shadow: #003149;
 
 .register__form {
+  display: flex;
+  flex-direction: column;
   width: 85%;
 }
 
@@ -25,6 +27,7 @@ $button-shadow: #003149;
 .register__input {
   height: 40px;
   font-size: 1em;
-  margin: 8%;
-  width: 40%;
+  margin: 20px;
+  text-align: center;
+  width: 300px;
 }

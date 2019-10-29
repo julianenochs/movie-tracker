@@ -4,6 +4,7 @@ import MovieCard from '../components/MovieCard/MovieCard';
 import './Favorites.scss';
 import PropTypes from 'prop-types';
 export class Favorites extends Component {
+  
   returnFavorites = () => {
     return this.props.favorites.map((fav, i) => {
       return (
