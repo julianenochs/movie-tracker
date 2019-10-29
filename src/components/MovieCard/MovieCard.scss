@@ -2,7 +2,7 @@ $button-color: #004263;
 $button-shadow: #003149;
 
 img {
-  width: 200px;
+  width: 210px;
 }
 
 .movie__card {
@@ -18,13 +18,6 @@ img {
   width: 15%;
 }
 
-.movie__title {
-  font-family: 'Staatliches', cursive;
-  font-size: 1.7em;
-  height: 8vh;
-  letter-spacing: 3px;
-}
-
 .overview {
   height: 20vh;
   font-family: 'Barlow Condensed', sans-serif;
@@ -35,6 +28,7 @@ img {
 
 .favorite__star {
   height: 4vh;
+  margin-top: 10px;
   width: 20%;
 }
 
@@ -44,9 +38,9 @@ img {
   box-shadow: 4px 4px $button-shadow;
   color: white;
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: 1em;
-  height: 40px;
+  font-size: 1.2em;
+  height: 30px;
   letter-spacing: 5px;
   text-decoration: none;
-  width: 120px;
+  width: 150px;
 }
