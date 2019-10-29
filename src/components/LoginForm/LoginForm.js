@@ -82,6 +82,7 @@ export class LoginForm extends Component {
             value={this.props.tempUser.email}
             placeholder='Your email here'
             onChange={this.handleChange}
+            className='login__input'
           />
           <input
             name='password'
@@ -89,6 +90,7 @@ export class LoginForm extends Component {
             value={this.props.tempUser.password}
             placeholder='Password'
             onChange={this.handleChange}
+            className='login__input'
           />
           {email && password && (
             <button onClick={this.handleLogin} className='login__button'>Login</button>

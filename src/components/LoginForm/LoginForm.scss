@@ -11,7 +11,7 @@ form {
   justify-content: space-around;
 }
 
-input {
+.login__input {
   height: 40px;
   font-size: 1em;
   margin: 8%;
@@ -21,6 +21,7 @@ input {
 .login__button {
   background-color: $button-color;
   border: none;
+  border-radius: 5px;
   box-shadow: 4px 4px $button-shadow;
   color: white;
   font-family: 'Barlow Condensed', sans-serif;

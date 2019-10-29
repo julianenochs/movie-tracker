@@ -1,9 +1,14 @@
 $button-color: #004263;
 $button-shadow: #003149;
 
+.register__form {
+  width: 85%;
+}
+
 .register__button {
   background-color: $button-color;
   border: none;
+  border-radius: 5px;
   box-shadow: 4px 4px $button-shadow;
   color: white;
   font-family: 'Barlow Condensed', sans-serif;
@@ -15,4 +20,11 @@ $button-shadow: #003149;
 
 .error__email {
   color: white;
+}
+
+.register__input {
+  height: 40px;
+  font-size: 1em;
+  margin: 8%;
+  width: 40%;
 }
