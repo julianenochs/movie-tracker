@@ -9,7 +9,7 @@ import {
   resetError } from '../../actions/index';
 import { register } from '../../apiCalls';
 import './RegisterForm.scss';
-
+import Bounce from 'react-reveal/Bounce'
 class RegisterForm extends Component {
   handleChange = e => {
     const { updateUserInfo, tempUser } = this.props;
@@ -54,8 +54,9 @@ class RegisterForm extends Component {
 
   render() {
     return (
+      <Bounce>
       <form className='form'>
-        {this.props.error !== '' && <h4>{this.props.error}</h4>}
+        {this.props.error !== '' && <h4 className='error__email'>{this.props.error}</h4>}
         {this.props.isLoggedIn && this.handleRedirect()}
         <input
           name='name'
@@ -78,8 +79,9 @@ class RegisterForm extends Component {
           placeholder='Password'
           onChange={this.handleChange}
         />
-          <button onClick={this.handleRegister}>Register</button>
+          <button onClick={this.handleRegister} className='register__button'>Register</button>
       </form>
+      </Bounce>
     );
   }
 }

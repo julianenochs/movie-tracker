@@ -1,0 +1,18 @@
+$button-color: #004263;
+$button-shadow: #003149;
+
+.register__button {
+  background-color: $button-color;
+  border: none;
+  box-shadow: 4px 4px $button-shadow;
+  color: white;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.5em;
+  height: 40px;
+  letter-spacing: 5px;
+  width: 120px;
+}
+
+.error__email {
+  color: white;
+}

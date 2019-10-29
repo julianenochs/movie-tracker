@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../components/MovieCard/MovieCard';
-
+import './Favorites.scss'
 export class Favorites extends Component {
+
   returnFavorites = () => {
     return this.props.favorites.map((fav, i) => {
       return (
@@ -18,7 +19,11 @@ export class Favorites extends Component {
   };
 
   render() {
-    return <section>{this.returnFavorites()}</section>;
+    return (
+      <section className='favorites__container'>
+        {this.returnFavorites()}
+      </section>
+    );
   }
 }
 const mapStateToProps = state => ({

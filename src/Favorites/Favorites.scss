@@ -1,0 +1,14 @@
+.favorites__container {
+  align-items: center;
+  background-color: rgba(0, 31, 46, 0.78);
+  color: white;
+  display: flex;
+  flex-direction: row;
+  margin: 3px;
+  margin-block-start: 5px;
+  height: 60vh;
+  overflow: scroll;
+  overflow-y: hidden;
+  padding: 15px;
+  width: 85%;
+}

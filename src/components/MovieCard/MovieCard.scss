@@ -15,6 +15,7 @@ img {
   margin-block-start: 5px;
   height: 70vh;
   padding: 15px;
+  width: 15%;
 }
 
 .movie__title {
@@ -27,6 +28,7 @@ img {
 .overview {
   height: 20vh;
   font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1em;
   overflow: scroll;
   width: 95%;
 }
