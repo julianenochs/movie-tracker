@@ -7,14 +7,14 @@ import {
   updateError,
   updateUser,
   resetError,
-  updateFavorites
+  updateFavorites,
 } from '../../actions/index';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.scss';
 import Bounce from 'react-reveal/Bounce';
+import PropTypes from 'prop-types';
 
 export class LoginForm extends Component {
-
   handleChange = e => {
     const { updateUserInfo, tempUser } = this.props;
     const inputName = e.target.name;
@@ -32,19 +32,6 @@ export class LoginForm extends Component {
     }
   };
 
-  loadFavorites = async () => {
-    const favoriteMovies = await getFavorites(this.props.user.userId);
-    favoriteMovies.favorites.forEach(movie => {
-      let updateMovie = this.props.movies.find(
-        mov => mov.title === movie.title
-      );
-      if (updateMovie) {
-        updateMovie.isFavorite = true;
-      }
-    });
-    this.props.updateFavorites(favoriteMovies);
-  };
-
   handleLogin = async e => {
     e.preventDefault();
     const { email, password } = this.props.tempUser;
@@ -53,8 +40,9 @@ export class LoginForm extends Component {
         this.props.updateUser(this.props.tempUser.email, login.id);
         this.props.updateIsLoggedIn(true);
         this.props.resetError('');
+        localStorage.setItem('user', JSON.stringify({email, userId: login.id }));
         this.props.updateUserInfo('', '', '');
-        this.loadFavorites();
+        this.props.loadFavorites();
       })
       .catch(err => {
         this.props.updateError(err);
@@ -72,31 +60,38 @@ export class LoginForm extends Component {
     return (
       <section className='form'>
         {this.handleRedirect()}
-        {this.props.error !== '' && <h4 className='error__message'>{this.props.error}</h4>}
+        {this.props.error !== '' && (
+          <h4 className='error__message'>{this.props.error}</h4>
+        )}
         <Bounce>
-
-        <form>
-          <input
-            name='email'
-            type='text'
-            value={this.props.tempUser.email}
-            placeholder='Your email here'
-            onChange={this.handleChange}
-            className='login__input'
-          />
-          <input
-            name='password'
-            type='password'
-            value={this.props.tempUser.password}
-            placeholder='Password'
-            onChange={this.handleChange}
-            className='login__input'
-          />
-          {email && password && (
-            <button onClick={this.handleLogin} className='login__button'>Login</button>
-          )}
-          {(!email || !password) && <button disabled className='login__button'>Login</button>}
-        </form>
+          <form>
+            <input
+              name='email'
+              type='text'
+              value={this.props.tempUser.email}
+              placeholder='Your email here'
+              onChange={this.handleChange}
+              className='login__input'
+            />
+            <input
+              name='password'
+              type='password'
+              value={this.props.tempUser.password}
+              placeholder='Password'
+              onChange={this.handleChange}
+              className='login__input'
+            />
+            {email && password && (
+              <button onClick={this.handleLogin} className='login__button'>
+                Login
+              </button>
+            )}
+            {(!email || !password) && (
+              <button disabled className='login__button'>
+                Login
+              </button>
+            )}
+          </form>
         </Bounce>
       </section>
     );
@@ -110,7 +105,8 @@ export const mapDispatchToProps = dispatch => ({
   updateError: errorMessage => dispatch(updateError(errorMessage)),
   updateUser: (email, userId) => dispatch(updateUser(email, userId)),
   resetError: () => dispatch(resetError()),
-  updateFavorites: favorites => dispatch(updateFavorites(favorites))
+  updateFavorites: favorites => dispatch(updateFavorites(favorites)),
+  updateIsLoggedIn: bool => dispatch( updateIsLoggedIn(bool) ),
 });
 
 export const mapStateToProps = state => ({
@@ -125,3 +121,11 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(LoginForm);
+
+LoginForm.propTypes = {
+  user: PropTypes.object,
+  tempUser: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
+  error: PropTypes.string,
+  movies: PropTypes.array
+};

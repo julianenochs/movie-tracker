@@ -2,10 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import './MovieInfo.scss';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export const MovieInfo = props => {
-  console.log('props', props);
-  const selectMovie = props.selectMovieToDisplay(props.id);
+  props.selectMovieToDisplay(props.id);
   return (
     <section className='movie-info__card'>
       <h2 className='movie__title'>{props.selectMovie.title}</h2>
@@ -31,3 +31,7 @@ export default connect(
   mapStateToProps,
   null
 )(MovieInfo);
+
+MovieInfo.propTypes = {
+  selectMovie: PropTypes.object
+};

@@ -9,6 +9,7 @@ import {
   displayFavorites
 } from '../actions';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 export class Header extends Component {
   handleSignout = () => {
@@ -16,6 +17,7 @@ export class Header extends Component {
     this.props.updateUser('');
     this.props.updateFavorites({ favorites: [] });
     this.props.resetMovies();
+    localStorage.removeItem('user');
   };
 
   render() {
@@ -68,3 +70,9 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Header);
+
+Header.propTypes = {
+  user: PropTypes.object,
+  isLoggedIn: PropTypes.bool,
+  movies: PropTypes.array
+};

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import MovieCard from '../components/MovieCard/MovieCard';
-import './Favorites.scss'
+import './Favorites.scss';
+import PropTypes from 'prop-types';
 export class Favorites extends Component {
-
   returnFavorites = () => {
     return this.props.favorites.map((fav, i) => {
       return (
@@ -35,3 +35,8 @@ export default connect(
   mapStateToProps,
   null
 )(Favorites);
+
+Favorites.propTypes = {
+  favorites: PropTypes.array,
+  movies: PropTypes.array
+};
